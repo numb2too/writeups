@@ -33,6 +33,6 @@ cat /usr/share/wordlists/dirb/common.txt \
  63088  63088 524649 /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt
 
 ```
-> └─$ sort --help | grep -- -u                    
-  -u, --unique              output only the first of lines with equal keys;
-> 去除重複的單字
+> └─$ sort --help | grep -- -u                  
+  -u, --unique              output only the first of lines with equal keys;  
+> 去除重複的單字  

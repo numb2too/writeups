@@ -77,8 +77,8 @@
 
 ```
 
-> └─$ diff --help | grep -- --strip-trailing-cr
-> --strip-trailing-cr strip trailing carriage return > on input
+> └─$ diff --help | grep -- --strip-trailing-cr  
+> --strip-trailing-cr strip trailing carriage return > on input  
 > 輸入時去除尾隨回車符
 
 ### `-u` 比較前後三行
@@ -118,5 +118,5 @@
  62143
 ```
 
-> └─$ diff --help | grep -- -u  
->  -u, -U NUM, --unified[=NUM] output NUM (default 3) lines of unified context
+> └─$ diff --help | grep -- -u    
+>  -u, -U NUM, --unified[=NUM] output NUM (default 3) lines of unified context  

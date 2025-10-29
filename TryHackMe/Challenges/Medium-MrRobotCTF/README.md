@@ -198,8 +198,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-10-21 12:02:
 
 到`Appearance`>`Editor`修改`404.php`
 內容參考
-`cat /usr/share/webshells/php/php-reverse-shell.php`。
-或 [php-reverse-shell.php](/tryhackme/Challenges/MrRobotCTF/php-reverse-shell.php)  
+`cat /usr/share/webshells/php/php-reverse-shell.php`  
+或 [php-reverse-shell.php](/tools/php-reverse-shell.php)  
 上傳後監聽 PORT
 
 ```!=

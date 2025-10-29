@@ -21,10 +21,29 @@
 ```
 
 > `-I`, equivalent to --binary-files=without-match
+> 忽略二進位檔案。
 > `-R`, --dereference-recursive likewise, but follow all symlinks
+> 遞迴搜尋 (recursive)。會往下走目錄樹搜尋子目錄
 
-> `-I`, 忽略二進位檔案。
-> `-R`, 遞迴搜尋 (recursive)。會往下走目錄樹搜尋子目錄。
+- 只掃描這一層
+```bash
+grep -I 'robot' ./* 2>/dev/null
+```
+
+- 同時包含 robots.txt, weblib, admin     
+```bash                    
+┌──(kali㉿kali)-[/usr/share/seclists/Discovery/Web-Content]
+└─$ grep -l 'robots.txt' ./* 2>/dev/null | xargs grep -l 'weblib' | xargs grep -l 'admin'
+./combined_directories.txt
+./combined_words.txt
+./directory-list-1.0.txt
+./directory-list-2.3-big.txt
+./directory-list-lowercase-2.3-big.txt
+```
+ > -w, --word-regexp         match only whole words
+ > 只匹配完整單字
+ > -n, --line-number         print line number with output lines
+ > 顯示行數
 
 
 ### cat | grep 跟 grep -n 差異

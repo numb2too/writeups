@@ -20,9 +20,9 @@
 ./raft-large-directories.txt:weblib
 ```
 
-> `-I`, equivalent to --binary-files=without-match
-> 忽略二進位檔案。
-> `-R`, --dereference-recursive likewise, but follow all symlinks
+> `-I`, equivalent to --binary-files=without-match  
+> 忽略二進位檔案  
+> `-R`, --dereference-recursive likewise, but follow all symlinks  
 > 遞迴搜尋 (recursive)。會往下走目錄樹搜尋子目錄
 
 - 只掃描這一層
@@ -40,9 +40,9 @@ grep -I 'robot' ./* 2>/dev/null
 ./directory-list-2.3-big.txt
 ./directory-list-lowercase-2.3-big.txt
 ```
- > -w, --word-regexp         match only whole words
- > 只匹配完整單字
- > -n, --line-number         print line number with output lines
+ > -w, --word-regexp         match only whole words  
+ > 只匹配完整單字  
+ > -n, --line-number         print line number with output lines  
  > 顯示行數
 
 

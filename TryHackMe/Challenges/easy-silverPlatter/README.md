@@ -792,3 +792,9 @@ THM{09...f6}
 ## 參考
 - https://medium.com/@The_Hiker/silver-platter-tryhackme-walkthrough-thehiker-1dd6a014f3b4
 - https://github.com/injcristianrojas/writeups/tree/main/thm/20250110_silverplatter
+
+## Q&A
+- [gobuster-ffuf 哪個快](QA-gobuster-ffuf-fast.md)
+- [wordlist有少怎辦](QA-wordlist.md)
+- [grep 用法](QA-grep.md)
+- [xargs是啥](QA-xargs.md)

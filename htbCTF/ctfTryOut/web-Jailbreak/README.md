@@ -2,6 +2,7 @@
 - EVENT: [CTF Try Out](https://ctf.hackthebox.com/event/1434)
 - 種類: web
 - 難度: very easy
+- 靶機: `94.237.122.36:54349`
 
 ## 解題過程概述
 觀察網站功能,注意到 `/rom` 路徑有 XML 相關資料  

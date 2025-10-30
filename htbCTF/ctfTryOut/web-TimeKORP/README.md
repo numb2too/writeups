@@ -2,6 +2,7 @@
 - EVENT: [CTF Try Out](https://ctf.hackthebox.com/event/1434)
 - 種類: web
 - 難度: very easy
+- 靶機: `94.237.122.36:54811`
 
 ## 解題過程概述
 起初看是簡單的網站顯示時間日期而已  

@@ -4,7 +4,8 @@
 題目: Silver Platter  
 難度: easy  
 網址: https://tryhackme.com/room/silverplatter
-靶機: `10.10.103.215`
+靶機: `10.10.103.215` `10.10.93.45` `10.10.239.210`
+> 因為重啟過題目，所以 IP 有變
 
 ## nmap
 

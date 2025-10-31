@@ -1237,6 +1237,9 @@ THM{YW...M2}
 
 ```
 
+### Proof 
+https://x.com/happynumb2too/status/1984245988643803234
+
 ## 參考資料
 - https://apjone.uk/tryhackme-year-of-the-owl/
 - https://diannaosec.blogspot.com/2023/05/hacking-year-of-owl-thm.html

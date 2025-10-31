@@ -408,12 +408,12 @@ msf6 exploit(windows/smb/ms17_010_eternalblue) > run
 
 ```
 
-> nmap 掃出 `Product_Version: 10.0.17763`
+> nmap 掃出 `Product_Version: 10.0.17763`  
 > 可到此網站 https://msrc.microsoft.com/update-guide
-> 搜尋 `10.0.17763` 即可確認對應 windows版本
-> google `ms17-010` 可找到 [官方漏洞版本清單](https://learn.microsoft.com/zh-tw/security-updates/securitybulletins/2017/ms17-010#security-update-for-microsoft-windows-smb-server-4013389)
-> 可發現靶機環境是 windows 10 1809 & windows server 2019
-> 與官方的漏洞清單 windows 10 2016 & windows server 2016 
+> 搜尋 `10.0.17763` 即可確認對應 windows版本  
+> google `ms17-010` 可找到 [官方漏洞版本清單](https://learn.microsoft.com/zh-tw/security-updates/securitybulletins/2017/ms17-010#security-update-for-microsoft-windows-smb-server-4013389)  
+> 可發現靶機環境是 windows 10 1809 & windows server 2019  
+> 與官方的漏洞清單 windows 10 2016 & windows server 2016  
 > 靶機的版本較新應該以修補此漏洞了
 
 ## Initial Access

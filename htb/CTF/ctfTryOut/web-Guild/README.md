@@ -366,7 +366,7 @@ main.py
 requirements.txt
 website
 /app # cat flag.txt
-HTB{mult1pl3_lo0p5_mult1pl3_h0les_dd4e4fe02ddefd78e2e3939bd3d3e481}/app # ^C
+HTB{mul81}/app # ^C
                           
 ```
 

@@ -3,7 +3,7 @@
 來源: tryhackme  
 題目: Retro
 難度: hard  
-網址: https://tryhackme.com/room/retro
+網址: https://tryhackme.com/room/retro  
 靶機: `10.10.200.42`
 
 ## 掃描過程
@@ -232,7 +232,7 @@ Serving HTTP on 0.0.0.0 port 1234 (http://0.0.0.0:1234/) ...
 如果成功會有瀏覽器可以選
 我選 IE 然後跳出此視窗點 OK
 ![alt text](image-3.png)  
-最後按照 POC 操作即可提權成功
+最後按照 POC 操作即可提權成功  
 ![alt text](image-4.png)  
 
 > 可參考此[大神](https://github.com/nobodyatall648/CVE-2019-1388)的說明
@@ -650,5 +650,5 @@ msf6 auxiliary(scanner/http/wordpress_pingback_access) > run
 
 
 ## 參考
-https://medium.com/@conmurray/tryhackme-retro-write-up-fe4599480267
+https://medium.com/@conmurray/tryhackme-retro-write-up-fe4599480267  
 https://blog.whale-tw.com/2024/03/07/retro-thm/

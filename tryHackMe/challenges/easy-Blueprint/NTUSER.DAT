@@ -1,0 +1,446 @@
+┌──(kali㉿kali)-[~/tryhackme/blueprint]
+└─$ regripper -r NTUSER.DAT -f ntuser
+Parsed Plugins file.
+Error in adoberdr: Can't locate /usr/lib/regripper/plugins/adoberdr.pl at /usr/bin/regripper line 193.
+adoberdr complete.
+----------------------------------------
+Launching allowedenum v.20200511
+allowedenum v.20200511
+(NTUSER.DAT, Software) Extracts AllowedEnumeration values to determine hidden special folders
+Software\Microsoft\Windows\CurrentVersion\Explorer\AllowedEnumeration not found.
+Microsoft\Windows\CurrentVersion\Explorer\AllowedEnumeration not found.
+allowedenum complete.
+----------------------------------------
+Launching appassoc v.20200515
+appassoc v.20200515
+- Gets contents of user's ApplicationAssociationToasts key
+Software\Microsoft\Windows\CurrentVersion\ApplicationAssociationToasts not found.
+appassoc complete.
+----------------------------------------
+Launching appcompatflags v.20200525
+appcompatflags v.20200525
+(NTUSER.DAT, Software) Extracts AppCompatFlags for Windows.
+appcompatflags complete.
+----------------------------------------
+Launching appkeys v.20200517
+appkeys v.20200517
+(NTUSER.DAT, Software) Extracts AppKeys entries.
+appkeys complete.
+----------------------------------------
+Launching applets v.20200525
+applets v.20200525
+(NTUSER.DAT) Gets contents of user's Applets key
+Software\Microsoft\Windows\CurrentVersion\Applets not found.
+applets complete.
+----------------------------------------
+Launching apppaths v.20200511
+apppaths v.20200511
+(NTUSER.DAT,Software) Gets content of App Paths subkeys
+apppaths complete.
+----------------------------------------
+Launching appspecific v.20200515
+Software\Microsoft\IntelliPoint\AppSpecific not found.
+appspecific complete.
+----------------------------------------
+Launching appx v.20200427
+appx v.20200427
+(NTUSER.DAT, USRCLASS.DAT) Checks for persistence via Universal Windows Platform Apps
+appx complete.
+----------------------------------------
+Launching arpcache v.20200515
+arpcache v.20200515
+(NTUSER.DAT) Retrieves CurrentVersion\App Management\ARPCache entries
+Software\Microsoft\Windows\CurrentVersion\App Management\ARPCache not found.
+arpcache complete.
+----------------------------------------
+Launching attachmgr v.20200525
+attachmgr v.20200525
+(NTUSER.DAT) Checks user's keys that manage the Attachment Manager functionality
+Software\Microsoft\Windows\CurrentVersion\Policies\Associations not found.
+Software\Microsoft\Windows\CurrentVersion\Policies\Attachments not found.
+attachmgr complete.
+----------------------------------------
+Launching cached v.20200525
+cached v.20200525
+(NTUSER.DAT) Gets cached Shell Extensions from NTUSER.DAT hive
+Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Cached not found.
+cached complete.
+----------------------------------------
+Launching cmdproc v.20200515
+cmdproc v.20200515
+(NTUSER.DAT) Autostart - get Command Processor\AutoRun value from NTUSER.DAT hive
+Software\Microsoft\Command Processor
+LastWrite Time 2009-07-14 02:05:40Z
+AutoRun value not found.
+cmdproc complete.
+----------------------------------------
+Launching comdlg32 v.20200517
+comdlg32 v.20200517
+Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32 not found.
+comdlg32 complete.
+----------------------------------------
+Launching compdesc v.20200511
+compdesc v.20200511
+(NTUSER.DAT) Gets contents of user's ComputerDescriptions key
+Software\Microsoft\Windows\CurrentVersion\Explorer\ComputerDescriptions not found.
+compdesc complete.
+----------------------------------------
+Launching DDO v.20140414
+DDO v.20140414
+(NTUSER.DAT) Gets user's DeviceDisplayObjects key contents
+Software\Microsoft\Windows NT\CurrentVersion\DeviceDisplayObjects not found.
+ddo complete.
+----------------------------------------
+Launching disablemru v.20190924
+disablemru v.20190924
+(NTUSER.DAT, Software) Checks settings disabling user's MRUs
+disablemru complete.
+----------------------------------------
+Launching environment v.20200512
+environment v.20200512
+(System, NTUSER.DAT) Get environment vars from NTUSER.DAT & System hives
+Environment
+LastWrite Time: 2009-07-14 02:03:48Z
+TEMP                      %USERPROFILE%\AppData\Local\Temp                  
+TMP                       %USERPROFILE%\AppData\Local\Temp                  
+environment complete.
+----------------------------------------
+Launching featureusage v.20200511
+featureusage v.20200511
+(NTUSER.DAT) Extracts user's FeatureUsage data.
+Software\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage not found.
+featureusage complete.
+----------------------------------------
+Launching identities v.20200525
+identities v.20200525
+(NTUSER.DAT) Extracts values from Identities key; NTUSER.DAT
+Identities not found.
+identities complete.
+----------------------------------------
+Launching injectdll64 v.20200427
+injectdll64 v.20200427
+(NTUSER.DAT, Software) Retrieve values set to weaken Chrome security
+Software\Policies\Google\Chrome\CertificateTransparencyEnforcementDisabledForUrls not found.
+Policies\Google\Chrome\CertificateTransparencyEnforcementDisabledForUrls not found.
+injectdll64 complete.
+----------------------------------------
+Launching jumplistdata v.20200517
+jumplistdata v.20200517
+Gets contents of user's JumpListData key
+Software\Microsoft\Windows\CurrentVersion\Search\JumpListData not found.
+jumplistdata complete.
+----------------------------------------
+Launching knowndev v.20200515
+knowndev v.20200515
+(NTUSER.DAT) Gets user's KnownDevices key contents
+Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\KnownDevices not found.
+knowndev complete.
+----------------------------------------
+Error in link_click: Can't locate /usr/lib/regripper/plugins/link_click.pl at /usr/bin/regripper line 193.
+link_click complete.
+----------------------------------------
+Launching listsoft v.20200517
+listsoft v.20200517
+(NTUSER.DAT) Lists contents of user's Software key
+List the contents of the Software key in the NTUSER.DAT hive
+file, in order by LastWrite time.
+2009-07-14 04:52:34Z    AppDataLow
+2009-07-14 04:52:34Z    Microsoft
+2009-07-14 02:05:38Z    Policies
+listsoft complete.
+----------------------------------------
+Launching load v.20200517
+load v.20200517
+(NTUSER.DAT) Gets load and run values from user hive
+load
+Software\Microsoft\Windows NT\CurrentVersion\Windows
+LastWrite Time 2009-07-14 02:04:35Z
+load value not found.
+run value not found.
+load complete.
+----------------------------------------
+Launching logonstats v.20200517
+logonstats v.20200517
+Gets contents of user's LogonStats key
+Software\Microsoft\Windows\CurrentVersion\Explorer\LogonStats not found.
+logonstats complete.
+----------------------------------------
+Launching lxss v.20200511
+lxss v.20200511
+(NTUSER.DAT) Gets WSL config.
+Software\Microsoft\Windows\CurrentVersion\Lxss not found.
+lxss complete.
+----------------------------------------
+Launching mixer v.20200517
+mixer v.20200517
+(NTUSER.DAT) Checks user's audio mixer settings
+mixer complete.
+----------------------------------------
+Launching mmc v.20200517
+mmc v.20200517
+(NTUSER.DAT) Get contents of user's MMC\Recent File List key
+Software\Microsoft\Microsoft Management Console\Recent File List not found.
+mmc complete.
+----------------------------------------
+Launching mmo v.20200517
+mmo v.20200517
+(NTUSER.DAT) Checks NTUSER for Multimedia\Other values [malware]
+Software\Microsoft\Multimedia\Other not found.
+Software\Microsoft\CTF\LangBarAddIn not found.
+mmo complete.
+----------------------------------------
+Launching mndmru v.20200517
+mndmru v.20200517
+(NTUSER.DAT) Get contents of user's Map Network Drive MRU
+Software\Microsoft\Windows\CurrentVersion\Explorer\Map Network Drive MRU not found.
+mndmru complete.
+----------------------------------------
+Launching mp2 v.20200526
+mp2 v.20200526
+(NTUSER.DAT) Gets user's MountPoints2 key contents
+Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2 not found.
+mp2 complete.
+----------------------------------------
+Launching mpmru v.20200517
+mpmru v.20200517
+(NTUSER.DAT) Gets user's Media Player RecentFileList values
+Software\Microsoft\MediaPlayer\Player\RecentFileList not found.
+mpmru complete.
+----------------------------------------
+Launching  msoffice v.20200518
+msoffice v.20200518
+msoffice complete.
+----------------------------------------
+Launching muicache v.20200525
+muicache v.20200525
+(NTUSER.DAT,USRCLASS.DAT) Gets EXEs from user's MUICache key
+Software\Microsoft\Windows\ShellNoRoam\MUICache not found.
+Local Settings\Software\Microsoft\Windows\Shell\MUICache not found.
+muicache complete.
+----------------------------------------
+Launching nation v.20200517
+nation v.20200517
+(ntuser.dat) Gets region information from HKCU
+Nation Information Check
+Control Panel\International\Geo
+LastWrite time: 2009-07-14 04:57:14Z
+The Region value is : 244
+The Country Is: United States
+For more information please visit the link below:
+https://msdn.microsoft.com/en-us/library/aa723531.aspx
+nation complete.
+----------------------------------------
+Launching oisc v.20091125
+oisc v.20091125
+(NTUSER.DAT) Gets contents of user's Office Internet Server Cache
+Office Version: 
+Software\Microsoft\Office\\Common\Internet\Server Cache not found.
+oisc complete.
+----------------------------------------
+Launching onedrivev.20200515
+onedrive v.20200515
+(NTUSER.DAT) Gets contents of user's OneDrive key
+Software\Microsoft\OneDrive not found.
+onedrive complete.
+----------------------------------------
+Launching osversion v.20200511
+OSVersion
+Software\Microsoft
+LastWrite Time 2009-07-14 04:52:34Z
+OSVersion value not found.
+osversion complete.
+----------------------------------------
+Launching outlook_homepage v.20201002
+outlookhomepage v.20201002
+(NTUSER.DAT, Software) Retrieve values set to attack Outlook WebView Homepage
+Looking for webview homepage modifications. If this value is pointing
+to a URL outside the corporate domain it may be a malicious site.
+Looking for key values associated with security.
+If you see:
+[Example]  EnableRoamingFolderHomepages : 1
+[Example]  NonDefaultStoreScript : 1
+[Example]  EnableUnsafeClientMailRules : 1
+You may have a security vulnerability that allows attackers to hijack the URL
+outlook_homepage complete.
+----------------------------------------
+Launching pendinggpos v.20200427
+pendinggpos v.20200427
+NTUSER.DAT - Gets contents of user's PendingGPOs key
+Software\Microsoft\IEAK\GroupPolicy\PendingGPOs not found.
+pendinggpos complete.
+----------------------------------------
+Launching profiler v.20200525
+profiler v.20200525
+(NTUSER.DAT, System) Environment profiler information
+Environment
+LastWrite Time 2009-07-14 02:03:48Z
+TEMP -> %USERPROFILE%\AppData\Local\Temp
+TMP -> %USERPROFILE%\AppData\Local\Temp
+profiler complete.
+----------------------------------------
+Launching pslogging v.20200515
+pslogging v.20200515
+(NTUSER.DAT, Software) Extracts PowerShell logging settings
+Software\Policies\Microsoft\Windows\PowerShell not found.
+Policies\Microsoft\Windows\PowerShell not found.
+pslogging complete.
+----------------------------------------
+Launching psscript v.20200525
+psscript complete.
+----------------------------------------
+Launching putty v.20200515
+putty v.20200515
+(NTUSER.DAT) Extracts the saved SshHostKeys for PuTTY.
+Software\SimonTatham\PuTTY\SshHostKeys not found.
+putty complete.
+----------------------------------------
+Launching recentapps v.20200515
+recentapps v.20200515
+- Gets contents of user's RecentApps key
+Software\Microsoft\Windows\CurrentVersion\Search\RecentApps not found.
+recentapps complete.
+----------------------------------------
+Launching recentdocs v.20200427
+recentdocs v.20200427
+(NTUSER.DAT) Gets contents of user's RecentDocs key
+Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs not found.
+recentdocs complete.
+----------------------------------------
+Launching run v.20200511
+run v.20200511
+(Software, NTUSER.DAT) [Autostart] Get autostart key contents from Software hive
+Software\Microsoft\Windows\CurrentVersion\Run
+LastWrite Time 2009-07-14 04:52:34Z
+  Sidebar - %ProgramFiles%\Windows Sidebar\Sidebar.exe /autoRun
+Software\Microsoft\Windows\CurrentVersion\Run has no subkeys.
+Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run not found.
+Software\Microsoft\Windows\CurrentVersion\RunOnce
+LastWrite Time 2017-01-15 22:39:21Z
+  mctadmin - C:\Windows\System32\mctadmin.exe
+Software\Microsoft\Windows\CurrentVersion\RunOnce has no subkeys.
+Software\Microsoft\Windows\CurrentVersion\RunServices not found.
+Software\Microsoft\Windows\CurrentVersion\RunServicesOnce not found.
+Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run not found.
+Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunOnce not found.
+Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run not found.
+Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run not found.
+Software\Microsoft\Windows\CurrentVersion\StartupApproved\Run not found.
+Software\Microsoft\Windows\CurrentVersion\StartupApproved\Run32 not found.
+Software\Microsoft\Windows\CurrentVersion\StartupApproved\StartupFolder not found.
+run complete.
+----------------------------------------
+Launching runmru v.20200525
+runmru v.20200525
+(NTUSER.DAT) Gets contents of user's RunMRU key
+Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU not found.
+runmru complete.
+----------------------------------------
+Launching runvirtual v.20200427
+runvirtual v.20200427
+(NTUSER.DAT, Software) Gets RunVirtual entries
+runvirtual complete.
+----------------------------------------
+Launching searchscopes v.20200517
+searchscopes v.20200517
+- Gets contents of user's SearchScopes key
+Software\Microsoft\Internet Explorer\SearchScopes not found.
+searchscopes complete.
+----------------------------------------
+Launching 7-zip v.20210329
+sevenzip v.20210329
+- Gets records of histories from 7-Zip keys
+Software\7-Zip not found.
+Software\Wow6432Node\7-Zip not found.
+sevenzip complete.
+----------------------------------------
+Launching shc v.20200427
+shc v.20200427
+(NTUSER.DAT) Gets SHC entries from user hive
+Software\Microsoft\Windows\CurrentVersion\UFH\SHC not found.
+shc complete.
+----------------------------------------
+Launching shellfolders v.20200515
+shellfolders v.20200515
+Gets user's shell folders values
+Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders
+LastWrite Time 2009-07-14 02:04:28Z
+Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
+LastWrite Time 2009-07-14 02:04:34Z
+StartUp folder : %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+shellfolders complete.
+----------------------------------------
+Launching speech v.20200427
+speech v.20200427
+(NTUSER.DAT) Get values from user's Speech key
+Software\Microsoft\Speech
+speech complete.
+----------------------------------------
+Launching sysinternals v.20080324
+Software\SysInternals not found.
+sysinternals complete.
+----------------------------------------
+Launching tsclient v.20200518
+Launching tsclient v.20200518
+(NTUSER.DAT) Displays contents of user's Terminal Server Client\Default key
+Software\Microsoft\Terminal Server Client\Default not found.
+Software\Microsoft\Terminal Server Client\Servers not found.
+tsclient complete.
+----------------------------------------
+Launching typedpaths v.20200526
+typedpaths v.20200526
+(NTUSER.DAT) Gets contents of user's typedpaths key
+Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths not found.
+typedpaths complete.
+----------------------------------------
+Launching typedurls v.20200526
+typedurls v.20200526
+(NTUSER.DAT) Returns contents of user's TypedURLs key.
+Software\Microsoft\Internet Explorer\TypedURLs not found.
+typedurls complete.
+----------------------------------------
+Launching typedurlstime v.20200526
+typedurlstime v.20200526
+(NTUSER.DAT) Returns contents of user's TypedURLsTime key.
+Software\Microsoft\Internet Explorer\TypedURLsTime not found.
+typedurlstime complete.
+----------------------------------------
+Launching uninstall v.20200525
+uninstall v.20200525
+(Software, NTUSER.DAT) Gets contents of Uninstall keys from Software, NTUSER.DAT hives
+Uninstall
+uninstall complete.
+----------------------------------------
+Launching userassist v.20170204
+Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist not found.
+userassist complete.
+----------------------------------------
+Launching wc_shares v.20200515
+wc_shares v.20200515
+- Gets contents of user's WorkgroupCrawler/Shares subkeys
+Software\Microsoft\Windows\CurrentVersion\Explorer\WorkgroupCrawler\Shares not found.
+wc_shares complete.
+----------------------------------------
+Launching winrar v.20200526
+winrar v.20200526
+(NTUSER.DAT) Get WinRAR\ArcHistory entries
+Software\WinRAR\ArcHistory not found.
+winrar complete.
+----------------------------------------
+Launching winscp v.20201227
+winscp v.20201227
+(NTUSER.DAT) Gets user's WinSCP 2 data
+Software\Martin Prikryl\WinSCP 2 not found.
+winscp complete.
+----------------------------------------
+Launching WinZip v.20200526
+winzip v.20200526
+(NTUSER.DAT) Get WinZip extract and filemenu values
+Software\Nico Mak Computing\WinZip not found.
+winzip complete.
+----------------------------------------
+Launching wordwheelquery v.20200823
+wordwheelquery v.20200823
+(NTUSER.DAT) Gets contents of user's WordWheelQuery key
+Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery not found.
+wordwheelquery complete.
+----------------------------------------

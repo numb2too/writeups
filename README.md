@@ -1,7 +1,11 @@
 my writeups
 
-## other tools
+## encode tools
 - [encode](https://emn178.github.io/online-tools/base64_decode.html)
+  
+## decrypted tools
+- [crackstation decrypted](https://crackstation.net)
+- [hashes decrypted](https://hashes.com/en/decrypt/hash)
 
 ## create cmd tools
 - [msfvenom-builder](https://mohitpimoli.github.io/VenomGen/)

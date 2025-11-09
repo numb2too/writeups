@@ -6,6 +6,7 @@ my writeups
 ## decrypted tools
 - [crackstation decrypted](https://crackstation.net)
 - [hashes decrypted](https://hashes.com/en/decrypt/hash)
+- [NT hash](https://ntlm.pw)
 
 ## create cmd tools
 - [msfvenom-builder](https://mohitpimoli.github.io/VenomGen/)

@@ -289,7 +289,7 @@ function openModal(writeup) {
 
 
     // 假設你的 GitHub repo 是 public，路徑如下（請改成你自己的）
-    const githubBaseUrl = 'https://github.com/numb2too/writeup2/blob/main/writeups';
+    const githubBaseUrl = 'https://github.com/numb2too/writeups/blob/main/writeups';
 
     // 組成對應的 .md 檔案連結
     const githubUrl = `${githubBaseUrl}/${writeup.folder}/README.md`;

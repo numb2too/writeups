@@ -1,7 +1,7 @@
 ## 概述
 
 來源: [tryhackme](https://tryhackme.com/room/blueprint)  
-題目: Blueprint
+題目: Blueprint  
 難度: easy  
 靶機: `10.10.82.106`
 

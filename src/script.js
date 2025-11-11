@@ -206,22 +206,12 @@ function filterWriteups() {
         const matchesSearch = searchTerm === '' ||
             w.title.toLowerCase().includes(searchTerm) ||
             w.description.toLowerCase().includes(searchTerm) ||
-            (w.os && w.os.some(tag => tag.toLowerCase().includes(searchTerm))) ||
-            (w.software && w.software.some(tag => tag.toLowerCase().includes(searchTerm))) ||
-            (w.vulns && w.vulns.some(tag => tag.toLowerCase().includes(searchTerm))) ||
-            (w.tools && w.tools.some(tag => tag.toLowerCase().includes(searchTerm)));
+            (w.tools && w.tools.every(tag => tag.toLowerCase().includes(searchTerm)));
 
-
-        const matchesOs = activeFilters.os.length === 0 ||
-            (w.os && activeFilters.os.some(tag => w.os.includes(tag)));
-        const matchesSoftware = activeFilters.software.length === 0 ||
-            (w.software && activeFilters.software.some(tag => w.software.includes(tag)));
-        const matchesVulns = activeFilters.vulns.length === 0 ||
-            (w.vulns && activeFilters.vulns.some(tag => w.vulns.includes(tag)));
         const matchesTools = activeFilters.tools.length === 0 ||
-            (w.tools && activeFilters.tools.some(tag => w.tools.includes(tag)));
+            (w.tools && activeFilters.tools.every(tag => w.tools.includes(tag)));
 
-        return matchesSearch && matchesOs && matchesSoftware && matchesVulns && matchesTools;
+        return matchesSearch && matchesTools;
     });
 
     // 更新標籤顯示（基於篩選後的結果）
@@ -280,15 +270,29 @@ function renderWriteups(writeupsToRender) {
                     </div>
                     <div class="writeup-desc">${w.description}</div>
                     <div class="writeup-tags">
-                        ${w.os ? w.os.map(t => `<div class="tag os">${t}</div>`).join('') : ''}
-                        ${w.software ? w.software.map(t => `<div class="tag software">${t}</div>`).join('') : ''}
-                        ${w.vulns ? w.vulns.map(t => `<div class="tag vuln">${t}</div>`).join('') : ''}
-                        ${w.tools ? w.tools.map(t => `<div class="tag tool">${t}</div>`).join('') : ''}
-                        ${w.type === 'knowledge' ? '<div class="tag knowledge">知識庫</div>' : ''}
-                    </div>
+                ${w.tools ? w.tools.map(t => `<div class="tag tool" data-type="tools" data-tag="${t}">${t}</div>`).join('') : ''}
+                ${w.type === 'knowledge' ? '<div class="tag knowledge" data-type="knowledge" data-tag="知識庫">知識庫</div>' : ''}
+            </div>
                 `;
 
         container.appendChild(card);
+
+        // 為卡片內 tag 加上點擊事件
+        card.querySelectorAll('.writeup-tags .tag').forEach(tagEl => {
+            tagEl.addEventListener('click', (e) => {
+                e.stopPropagation(); // 防止觸發 card 的 click
+                const type = tagEl.dataset.type;
+                const tag = tagEl.dataset.tag;
+
+                // knowledge tag 可以特別處理
+                if (type === 'knowledge') {
+                    if (!activeFilters.tools.includes('知識庫')) activeFilters.tools.push('知識庫');
+                    else activeFilters.tools = activeFilters.tools.filter(t => t !== '知識庫');
+                } else {
+                    toggleFilter(type, tag);
+                }
+            });
+        });
     });
 
     document.getElementById('total-count').textContent = writeupsToRender.length;

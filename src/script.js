@@ -1,16 +1,38 @@
+// 在 HTML 中的搜尋欄位後新增:
+// <input type="text" class="search-box" id="tag-search" placeholder="🏷️ 搜尋標籤...">
+// <div class="selected-tags-section" id="selected-tags-section">
+//     <div class="selected-tags-title">
+//         已選擇的標籤
+//         <span class="clear-all-btn" onclick="clearAllFilters()">清除全部</span>
+//     </div>
+//     <div class="selected-tags-container" id="selected-tags-container"></div>
+// </div>
 
-// Writeup 設定檔（index.json 格式）
 let writeups = [];
 let loadError = null;
+let activeFilters = {
+    tools: []
+};
+let showAllTags = {
+    tools: false
+};
 
+const TAG_DISPLAY_LIMIT = 5;
+
+// 修改: 標題/描述搜尋事件
 document.getElementById('search').addEventListener('input', (e) => {
     filterWriteups();
+});
+
+// 新增: 標籤搜尋事件
+document.getElementById('tag-search').addEventListener('input', (e) => {
+    const searchTerm = e.target.value;
+    renderTags(searchTerm);
 });
 
 // 載入 writeup 索引
 async function loadWriteupIndex() {
     try {
-        // 載入 writeups
         const writeupResponse = await fetch('data/writeups.json');
         let writeupData = [];
         if (writeupResponse.ok) {
@@ -19,7 +41,6 @@ async function loadWriteupIndex() {
             console.warn('無法載入 writeups.json');
         }
 
-        // 載入 knowledge
         const knowledgeResponse = await fetch('data/knowleges.json');
         let knowledgeData = [];
         if (knowledgeResponse.ok) {
@@ -28,14 +49,12 @@ async function loadWriteupIndex() {
             console.warn('無法載入 knowledge.json');
         }
 
-        // 合併資料
         const allData = [...writeupData, ...knowledgeData];
 
         if (allData.length === 0) {
             throw new Error('沒有成功載入任何資料');
         }
 
-        // 載入每個項目的內容
         const promises = allData.map(async (item) => {
             try {
                 const contentResponse = await fetch(`./writeups/${item.folder}/README.md`);
@@ -61,24 +80,11 @@ async function loadWriteupIndex() {
     } catch (err) {
         console.error('載入錯誤:', err);
         loadError = err.message;
-        // 使用範例資料
         loadExampleData();
         return false;
     }
 }
 
-// 初始化
-let activeFilters = {
-    tools: []
-};
-
-let showAllTags = {
-    tools: false
-};
-
-const TAG_DISPLAY_LIMIT = 5;
-
-// 收集所有唯一的標籤（可以基於篩選後的結果）
 function collectTags(filteredWriteups = null) {
     const tags = {
         tools: new Set()
@@ -91,26 +97,24 @@ function collectTags(filteredWriteups = null) {
     return tags;
 }
 
-// 渲染標籤
-function renderTags(searchTerm = '', filteredWriteups = null) {
+// 修改: 渲染標籤 (接受標籤搜尋詞)
+function renderTags(tagSearchTerm = '', filteredWriteups = null) {
     const tags = collectTags(filteredWriteups);
-
     const toolContainer = document.getElementById('tool-tags');
-
     toolContainer.innerHTML = '';
-    renderTagGroup(Array.from(tags.tools), toolContainer, 'tool', searchTerm, filteredWriteups);
+    renderTagGroup(Array.from(tags.tools), toolContainer, 'tool', tagSearchTerm, filteredWriteups);
 }
 
-// 渲染標籤組
-function renderTagGroup(tagArray, container, type, searchTerm, filteredWriteups = null) {
+function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteups = null) {
     let filteredTags = tagArray;
-    if (searchTerm) {
+
+    // 使用標籤搜尋詞過濾
+    if (tagSearchTerm) {
         filteredTags = tagArray.filter(tag =>
-            tag.toLowerCase().includes(searchTerm.toLowerCase())
+            tag.toLowerCase().includes(tagSearchTerm.toLowerCase())
         );
     }
 
-    // 計算每個標籤的文章數量
     const writeupsToCount = filteredWriteups || writeups;
     const typeKey = type === 'vuln' ? 'vulns' : type === 'tool' ? 'tools' : type;
 
@@ -121,7 +125,6 @@ function renderTagGroup(tagArray, container, type, searchTerm, filteredWriteups 
         ).length;
     });
 
-    // 過濾掉數量為 0 的標籤
     if (filteredWriteups) {
         filteredTags = filteredTags.filter(tag => tagCounts[tag] > 0);
     }
@@ -133,7 +136,6 @@ function renderTagGroup(tagArray, container, type, searchTerm, filteredWriteups 
         const el = document.createElement('div');
         el.className = `tag ${type}`;
 
-        // 顯示標籤名稱和數量
         const count = tagCounts[tag] || 0;
         el.textContent = `${tag} (${count})`;
         el.onclick = () => toggleFilter(typeKey, tag);
@@ -161,7 +163,7 @@ function renderTagGroup(tagArray, container, type, searchTerm, filteredWriteups 
         container.appendChild(lessBtn);
     }
 
-    if (searchTerm && filteredTags.length === 0) {
+    if (tagSearchTerm && filteredTags.length === 0) {
         const noResult = document.createElement('div');
         noResult.style.cssText = 'color: #999; font-size: 12px; padding: 5px;';
         noResult.textContent = '無符合的標籤';
@@ -169,13 +171,13 @@ function renderTagGroup(tagArray, container, type, searchTerm, filteredWriteups 
     }
 }
 
-// 切換顯示全部/部分標籤
 function toggleShowAll(type) {
     showAllTags[type] = !showAllTags[type];
-    filterWriteups();
+    const tagSearchTerm = document.getElementById('tag-search').value;
+    renderTags(tagSearchTerm);
 }
 
-// 切換篩選
+// 修改: 切換篩選
 function toggleFilter(type, tag) {
     const index = activeFilters[type].indexOf(tag);
     if (index > -1) {
@@ -183,18 +185,54 @@ function toggleFilter(type, tag) {
     } else {
         activeFilters[type].push(tag);
     }
+    renderSelectedTags();
     filterWriteups();
 }
 
-// 篩選 writeups
+// 新增: 渲染已選擇的標籤
+function renderSelectedTags() {
+    const container = document.getElementById('selected-tags-container');
+    const section = document.getElementById('selected-tags-section');
+
+    container.innerHTML = '';
+
+    const allSelected = [...activeFilters.tools];
+
+    if (allSelected.length === 0) {
+        section.classList.remove('active');
+        return;
+    }
+
+    section.classList.add('active');
+
+    activeFilters.tools.forEach(tag => {
+        const el = document.createElement('div');
+        el.className = 'tag tool selected';
+        el.textContent = tag;
+        el.onclick = () => toggleFilter('tools', tag);
+        container.appendChild(el);
+    });
+}
+
+// 新增: 清除所有篩選
+function clearAllFilters() {
+    activeFilters = {
+        tools: []
+    };
+    renderSelectedTags();
+    filterWriteups();
+}
+
+// 修改: 篩選 writeups (只搜尋標題和描述)
 function filterWriteups() {
     const searchTerm = document.getElementById('search').value.toLowerCase();
+    const tagSearchTerm = document.getElementById('tag-search').value.toLowerCase();
 
     const filtered = writeups.filter(w => {
+        // 只搜尋標題和描述
         const matchesSearch = searchTerm === '' ||
             w.title.toLowerCase().includes(searchTerm) ||
             w.description.toLowerCase().includes(searchTerm) ||
-            (w.tools && w.tools.some(tag => tag.toLowerCase().includes(searchTerm))) ||
             w.type.toLowerCase().includes(searchTerm);
 
         const matchesTools = activeFilters.tools.length === 0 ||
@@ -203,13 +241,10 @@ function filterWriteups() {
         return matchesSearch && matchesTools;
     });
 
-    // 更新標籤顯示（基於篩選後的結果）
-    renderTags(searchTerm, filtered);
-    // 渲染文章卡片
+    renderTags(tagSearchTerm, filtered);
     renderWriteups(filtered);
 }
 
-// 渲染 writeup 卡片
 function renderWriteups(writeupsToRender) {
     const container = document.getElementById('writeups-container');
     container.innerHTML = '';
@@ -218,7 +253,6 @@ function renderWriteups(writeupsToRender) {
         const card = document.createElement('div');
         card.className = 'writeup-card';
 
-        // 如果是knowledge類型，添加特殊樣式
         if (w.type === 'knowledge') {
             card.classList.add('knowledge-card');
         }
@@ -226,53 +260,37 @@ function renderWriteups(writeupsToRender) {
         card.onclick = () => openModal(w);
 
         const platformHtml = w.platform ? `<div class="platform ${w.platform}">${w.platform.toUpperCase()}</div>` : '';
-
-
-        // 假設你的 GitHub repo 是 public，路徑如下（請改成你自己的）
         const githubBaseUrl = 'https://github.com/numb2too/writeups/blob/main/writeups';
-
-        // 組成對應的 .md 檔案連結
         const githubUrl = `${githubBaseUrl}/${w.folder}/README.md`;
 
         card.innerHTML = `
-                    <div class="writeup-header">
-                        <div>
-                            <div class="writeup-title">${w.title}</div>
-                            <span style="color: #999; font-size: 12px; margin-top: 5px;">📅 ${w.date}</span>
-                             <a href="${githubUrl}" 
-               target="_blank" 
-                onclick="event.stopPropagation();" 
-              style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #f5f5f5; transition: 0.2s;">
-                <svg height="18" viewBox="0 0 16 16" width="18" fill="#333" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58 0 0 3.58 0 8a8.013 8.013 0 005.47 7.59c.4.075.55-.175.55-.388 
-                    0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487.803.056 
-                    1.225.825 1.225.825.714 1.223 1.872.87 2.327.665.072-.517.28-.87.508-1.07-1.777-.2-3.644-.888-3.644-3.955 
-                    0-.873.312-1.587.824-2.147-.083-.203-.357-1.018.078-2.12 0 0 .67-.215 2.2.82A7.548 
-                    7.548 0 018 4.875a7.55 7.55 0 011.996.27c1.53-1.035 2.198-.82 2.198-.82.437 1.102.163 1.917.08 
-                    2.12.513.56.823 1.274.823 2.147 0 3.073-1.87 3.752-3.65 3.947.288.248.543.736.543 
-                    1.482 0 1.07-.01 1.934-.01 2.197 0 .215.147.466.552.387A8.013 8.013 0 0016 
-                    8c0-4.42-3.58-8-8-8z"/>
-                </svg>
-            </a>
-                        </div>
-                        ${platformHtml}
-                    </div>
-                    <div class="writeup-desc">${w.description}</div>
-                    <div class="writeup-tags"  onclick="event.stopPropagation();" >
+            <div class="writeup-header">
+                <div>
+                    <div class="writeup-title">${w.title}</div>
+                    <span style="color: #999; font-size: 12px; margin-top: 5px;">📅 ${w.date}</span>
+                    <a href="${githubUrl}" target="_blank" onclick="event.stopPropagation();" 
+                       style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #f5f5f5; transition: 0.2s;">
+                        <svg height="18" viewBox="0 0 16 16" width="18" fill="#333" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8a8.013 8.013 0 005.47 7.59c.4.075.55-.175.55-.388 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487.803.056 1.225.825 1.225.825.714 1.223 1.872.87 2.327.665.072-.517.28-.87.508-1.07-1.777-.2-3.644-.888-3.644-3.955 0-.873.312-1.587.824-2.147-.083-.203-.357-1.018.078-2.12 0 0 .67-.215 2.2.82A7.548 7.548 0 018 4.875a7.55 7.55 0 011.996.27c1.53-1.035 2.198-.82 2.198-.82.437 1.102.163 1.917.08 2.12.513.56.823 1.274.823 2.147 0 3.073-1.87 3.752-3.65 3.947.288.248.543.736.543 1.482 0 1.07-.01 1.934-.01 2.197 0 .215.147.466.552.387A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+                ${platformHtml}
+            </div>
+            <div class="writeup-desc">${w.description}</div>
+            <div class="writeup-tags" onclick="event.stopPropagation();">
                 ${w.tools ? w.tools.map(t => `<div class="tag tool" data-type="tools" data-tag="${t}">${t}</div>`).join('') : ''}
             </div>
-                `;
+        `;
 
         container.appendChild(card);
 
-        // 為卡片內 tag 加上點擊事件
         card.querySelectorAll('.writeup-tags .tag').forEach(tagEl => {
             tagEl.addEventListener('click', (e) => {
-                e.stopPropagation(); // 防止觸發 card 的 click
+                e.stopPropagation();
                 const type = tagEl.dataset.type;
                 const tag = tagEl.dataset.tag;
 
-                // knowledge tag 可以特別處理
                 if (type === 'knowledge') {
                     if (!activeFilters.tools.includes('knowledge')) activeFilters.tools.push('knowledge');
                     else activeFilters.tools = activeFilters.tools.filter(t => t !== 'knowledge');
@@ -286,59 +304,35 @@ function renderWriteups(writeupsToRender) {
     document.getElementById('total-count').textContent = writeupsToRender.length;
 }
 
-// 開啟 Modal
 function openModal(writeup) {
     const modal = document.getElementById('modal');
     const body = document.getElementById('modal-body');
-
-    // 產生 Markdown HTML + GitHub 連結
-    body.innerHTML = `
-        ${marked.parse(writeup.content)}
-    `;
-
+    body.innerHTML = `${marked.parse(writeup.content)}`;
     modal.classList.add('active');
 }
 
-// 關閉 Modal
 function closeModal() {
     document.getElementById('modal').classList.remove('active');
 }
 
-// 點擊背景關閉 Modal
 document.getElementById('modal').onclick = function (e) {
     if (e.target === this) {
         closeModal();
     }
 };
 
-// 搜尋事件
-document.getElementById('search').addEventListener('input', (e) => {
-    // 清空已選的篩選
-    activeFilters = {
-        os: [],
-        software: [],
-        vulns: [],
-        tools: []
-    };
-    const searchTerm = e.target.value;
-    renderTags(searchTerm);
-    filterWriteups();
-});
-
-// 初始化頁面
 async function init() {
     const loaded = await loadWriteupIndex();
 
     if (!loaded && loadError) {
-        // 顯示警告訊息
         const header = document.querySelector('header');
         const warning = document.createElement('div');
         warning.style.cssText = 'background: #fff3cd; border: 2px solid #ffc107; padding: 15px; border-radius: 8px; margin-top: 15px;';
         warning.innerHTML = `
-                    <strong>⚠️ 開發模式</strong><br>
-                    <span style="color: #856404;">無法載入 writeups.json 或 knowledge.json，使用範例資料。</span><br>
-                    <small style="color: #666;">提示：請建立 writeups 資料夾並加入 writeups.json 和 knowledge.json 檔案</small>
-                `;
+            <strong>⚠️ 開發模式</strong><br>
+            <span style="color: #856404;">無法載入 writeups.json 或 knowledge.json，使用範例資料。</span><br>
+            <small style="color: #666;">提示：請建立 writeups 資料夾並加入 writeups.json 和 knowledge.json 檔案</small>
+        `;
         header.appendChild(warning);
     }
 

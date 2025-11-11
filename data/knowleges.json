@@ -1,0 +1,43 @@
+[
+    {
+        "title": "smbclient",
+        "description": "smbclient",
+        "vulns": [],
+        "tools": [
+            "smbclient"
+        ],
+        "date": "2025-11-11",
+        "folder": "smbclient",
+        "type": "knowledge"
+    },
+    {
+        "title": "CVE-2018-25114",
+        "description": "CVE-2018-25114",
+        "vulns": [
+            "CVE-2018-25114",
+            "RCE"
+        ],
+        "software": [
+            "osCommerce 2.3.4.1"
+        ],
+        "tools": [
+            "php",
+            "passthru"
+        ],
+        "date": "2025-11-11",
+        "folder": "CVE-2018-25114",
+        "type": "knowledge"
+    },
+    {
+        "title": "php-passthru",
+        "description": "php-passthru",
+        "vulns": [],
+        "tools": [
+            "php",
+            "passthru"
+        ],
+        "date": "2025-11-11",
+        "folder": "php-passthru",
+        "type": "knowledge"
+    }
+]

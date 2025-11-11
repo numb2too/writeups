@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>numb2too</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <!-- GitHub Buttons Script -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/dark-style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🚩 Numb2too</h1>
+            <p class="subtitle">TryHackMe | HackTheBox | VulnHub 解題記錄</p>
+            <div class="stats">
+                <div class="stat-item">📝 總計 <strong id="total-count">0</strong> 篇 Writeup</div>
+
+                <!-- 替換成這個 -->
+                <a class="github-button" href="https://github.com/numb2too/private-writeup-page"
+                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star"
+                    data-size="large" data-show-count="true"
+                    aria-label="Star numb2too/private-writeup-page on GitHub">Star</a>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <input type="text" class="search-box" id="search" placeholder="🔍 搜尋 writeup...">
+
+                <div class="filter-section">
+                    <div class="filter-title">💻 系統平台</div>
+                    <div class="tag-group" id="os-tags"></div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-title">⚙️ 漏洞軟體</div>
+                    <div class="tag-group" id="software-tags"></div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-title">🔴 漏洞編號</div>
+                    <div class="tag-group" id="vuln-tags"></div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-title">🛠️ 利用工具</div>
+                    <div class="tag-group" id="tool-tags"></div>
+                </div>
+            </aside>
+
+            <main>
+                <div class="writeups-grid" id="writeups-container"></div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="markdown-content" id="modal-body"></div>
+        </div>
+    </div>
+
+
+</body>
+<script src="src/loadExampleData.js"></script>
+<script src="src/script.js"></script>
+
+</html>

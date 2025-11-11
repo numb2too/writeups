@@ -206,7 +206,8 @@ function filterWriteups() {
         const matchesSearch = searchTerm === '' ||
             w.title.toLowerCase().includes(searchTerm) ||
             w.description.toLowerCase().includes(searchTerm) ||
-            (w.tools && w.tools.every(tag => tag.toLowerCase().includes(searchTerm)));
+            (w.tools && w.tools.every(tag => tag.toLowerCase().includes(searchTerm))) ||
+            w.type.toLowerCase().includes(searchTerm);
 
         const matchesTools = activeFilters.tools.length === 0 ||
             (w.tools && activeFilters.tools.every(tag => w.tools.includes(tag)));
@@ -229,7 +230,7 @@ function renderWriteups(writeupsToRender) {
         const card = document.createElement('div');
         card.className = 'writeup-card';
 
-        // 如果是知識庫類型，添加特殊樣式
+        // 如果是knowledge類型，添加特殊樣式
         if (w.type === 'knowledge') {
             card.classList.add('knowledge-card');
         }
@@ -269,9 +270,8 @@ function renderWriteups(writeupsToRender) {
                         ${platformHtml}
                     </div>
                     <div class="writeup-desc">${w.description}</div>
-                    <div class="writeup-tags">
+                    <div class="writeup-tags"  onclick="event.stopPropagation();" >
                 ${w.tools ? w.tools.map(t => `<div class="tag tool" data-type="tools" data-tag="${t}">${t}</div>`).join('') : ''}
-                ${w.type === 'knowledge' ? '<div class="tag knowledge" data-type="knowledge" data-tag="知識庫">知識庫</div>' : ''}
             </div>
                 `;
 
@@ -286,8 +286,8 @@ function renderWriteups(writeupsToRender) {
 
                 // knowledge tag 可以特別處理
                 if (type === 'knowledge') {
-                    if (!activeFilters.tools.includes('知識庫')) activeFilters.tools.push('知識庫');
-                    else activeFilters.tools = activeFilters.tools.filter(t => t !== '知識庫');
+                    if (!activeFilters.tools.includes('knowledge')) activeFilters.tools.push('knowledge');
+                    else activeFilters.tools = activeFilters.tools.filter(t => t !== 'knowledge');
                 } else {
                     toggleFilter(type, tag);
                 }

@@ -155,60 +155,14 @@ h3 {
 }
 
 /* 各類標籤顏色 */
-.tag.os {
+.tag.tool {
     border-color: #4CAF50;
     color: #4CAF50;
 }
 
-.tag.os.active {
+.tag.tool.active {
     background: #4CAF50;
     color: white;
-}
-
-.tag.software {
-    border-color: #FF9800;
-    color: #FF9800;
-}
-
-.tag.software.active {
-    background: #FF9800;
-    color: white;
-}
-
-.tag.vuln {
-    border-color: #f44336;
-    color: #f44336;
-}
-
-.tag.vuln.active {
-    background: #f44336;
-    color: white;
-}
-
-.tag.tool {
-    border-color: #9C27B0;
-    color: #9C27B0;
-}
-
-.tag.tool.active {
-    background: #9C27B0;
-    color: white;
-}
-
-.tag.knowledge {
-    border-color: #00BCD4;
-    color: #00BCD4;
-    position: relative;
-}
-
-.tag.knowledge.active {
-    background: #00BCD4;
-    color: white;
-}
-
-.tag.knowledge::before {
-    content: '📚';
-    margin-right: 4px;
 }
 
 /* ====== WRITEUP CARDS ====== */
@@ -233,18 +187,6 @@ h3 {
     border-left: 4px solid #00BCD4;
 }
 
-.writeup-card.knowledge-card::before {
-    content: '📚 知識庫';
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 11px;
-    background: #00BCD4;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-}
 
 .writeup-card:hover {
     transform: translateY(-5px);
@@ -276,6 +218,11 @@ h3 {
 
 .platform.thm {
     background: #88cc14;
+    color: white;
+}
+
+.platform.knowledge {
+    background: #a08ee3;
     color: white;
 }
 
@@ -388,6 +335,7 @@ h3 {
 .stats {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 .stat-item {
@@ -455,6 +403,67 @@ a:visited {
     transition: background 0.3s;
 }
 
+/* ====== 已選擇標籤區塊 ====== */
+.selected-tags-section {
+    background: rgba(167, 139, 250, 0.1);
+    border: 2px solid rgba(167, 139, 250, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.selected-tags-section.active {
+    display: block;
+}
+
+.selected-tags-title {
+    color: #c4b5fd;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.clear-all-btn {
+    color: #ef4444;
+    font-size: 11px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.clear-all-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.selected-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* 已選擇的標籤樣式 */
+.tag.selected {
+    background: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+    padding-right: 30px;
+    position: relative;
+}
+
+.tag.selected::after {
+    content: '×';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    font-weight: bold;
+}
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 968px) {

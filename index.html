@@ -16,8 +16,11 @@
     <div class="container">
         <header>
             <div class="stats">
-                <h3>🚩 Numb2too 解題記錄</h3>
-                <div class="stat-item">📝 總計 <strong id="total-count">0</strong> 篇 Writeup</div>
+                <div>
+                    <h3>🚩 Numb2too Writeup</h3>
+                </div>
+
+                <div class="stat-item">共 <strong id="total-count">0</strong> 篇</div>
 
                 <!-- 替換成這個 -->
                 <a class="github-button" href="https://github.com/numb2too/writeups"
@@ -28,25 +31,22 @@
 
         <div class="main-content">
             <aside class="sidebar">
-                <input type="text" class="search-box" id="search" placeholder="🔍 搜尋 writeup...">
+                <!-- 原本的搜尋欄 - 只搜尋標題和描述 -->
+                <input type="text" class="search-box" id="search" placeholder="🔍 搜尋標題/描述...">
 
-                <div class="filter-section">
-                    <div class="filter-title">💻 系統平台</div>
-                    <div class="tag-group" id="os-tags"></div>
+                <!-- 新增: 標籤搜尋欄 -->
+                <input type="text" class="search-box" id="tag-search" placeholder="🏷️ 搜尋標籤...">
+
+                <!-- 新增: 已選擇的標籤區塊 -->
+                <div class="selected-tags-section" id="selected-tags-section">
+                    <div class="selected-tags-title">
+                        已選擇的標籤
+                        <span class="clear-all-btn" onclick="clearAllFilters()">清除全部</span>
+                    </div>
+                    <div class="selected-tags-container" id="selected-tags-container"></div>
                 </div>
 
                 <div class="filter-section">
-                    <div class="filter-title">⚙️ 漏洞軟體</div>
-                    <div class="tag-group" id="software-tags"></div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="filter-title">🔴 漏洞編號</div>
-                    <div class="tag-group" id="vuln-tags"></div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="filter-title">🛠️ 利用工具</div>
                     <div class="tag-group" id="tool-tags"></div>
                 </div>
             </aside>

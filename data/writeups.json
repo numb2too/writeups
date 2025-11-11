@@ -3,21 +3,23 @@
         "title": "Blueprint - Easy",
         "platform": "thm",
         "description": "Blueprint",
-        "os": [
-            "windows"
-        ],
-        "software": [
-            "osCommerce 2.3.4.1"
-        ],
-        "vulns": [
-            "RCE",
-            "CVE-2018-25114"
-        ],
         "tools": [
+            "windows",
             "php",
-            "passthru"
+            "passthru",
+            "mimikatz",
+            "NTLM",
+            "decode",
+            "msfconsle",
+            "meterpreter",
+            "reverse_tcp",
+            "RCE",
+            "CVE-2018-25114",
+            "osCommerce 2.3.4.1",
+            "msfvenom"
         ],
         "date": "2025-11-11",
-        "folder": "Blueprint"
+        "folder": "Blueprint",
+        "type": ""
     }
 ]

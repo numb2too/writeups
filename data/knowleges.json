@@ -1,43 +1,84 @@
 [
     {
         "title": "smbclient",
-        "description": "smbclient",
-        "vulns": [],
+        "description": "SMB/CIFS（Windows 網路共享） 服務互動的命令行工具",
         "tools": [
             "smbclient"
         ],
         "date": "2025-11-11",
         "folder": "smbclient",
-        "type": "knowledge"
+        "platform": "knowledge"
     },
     {
         "title": "CVE-2018-25114",
-        "description": "CVE-2018-25114",
-        "vulns": [
-            "CVE-2018-25114",
-            "RCE"
-        ],
-        "software": [
-            "osCommerce 2.3.4.1"
-        ],
+        "description": "osCommerce 2.3.4 有個 RCE 漏洞",
         "tools": [
+            "osCommerce 2.3.4.1",
             "php",
-            "passthru"
+            "passthru",
+            "meterpreter",
+            "reverse_tcp",
+            "Privilege Escalation",
+            "CVE-2018-25114",
+            "RCE",
+            "msfvenom",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "CVE-2018-25114",
-        "type": "knowledge"
+        "platform": "knowledge"
     },
     {
         "title": "php-passthru",
-        "description": "php-passthru",
-        "vulns": [],
+        "description": "用於執行外部程式並直接將輸出傳送到瀏覽器",
         "tools": [
             "php",
             "passthru"
         ],
         "date": "2025-11-11",
         "folder": "php-passthru",
-        "type": "knowledge"
+        "platform": "knowledge"
+    },
+    {
+        "title": "mimikatz",
+        "description": "取得 ntlm",
+        "tools": [
+            "mimikatz",
+            "NTLM"
+        ],
+        "date": "2025-11-11",
+        "folder": "mimikatz",
+        "platform": "knowledge"
+    },
+    {
+        "title": "hash-tools",
+        "description": "hash-tools",
+        "tools": [
+            "NTLM",
+            "NT",
+            "LM",
+            "MD5",
+            "SHA1",
+            "SHA256",
+            "decode",
+            "base64",
+            "decrypt",
+            "hash"
+        ],
+        "date": "2025-11-11",
+        "folder": "hash-tools",
+        "platform": "knowledge"
+    },
+    {
+        "title": "NTLM",
+        "description": "NTLM（NT LAN Manager）是一種由 Microsoft 微軟 開發的 驗證（Authentication）協定",
+        "tools": [
+            "NTLM",
+            "hashcat",
+            "john"
+        ],
+        "date": "2025-11-11",
+        "folder": "NTLM",
+        "platform": "knowledge"
     }
 ]

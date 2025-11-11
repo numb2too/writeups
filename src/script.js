@@ -1,13 +1,3 @@
-// 在 HTML 中的搜尋欄位後新增:
-// <input type="text" class="search-box" id="tag-search" placeholder="🏷️ 搜尋標籤...">
-// <div class="selected-tags-section" id="selected-tags-section">
-//     <div class="selected-tags-title">
-//         已選擇的標籤
-//         <span class="clear-all-btn" onclick="clearAllFilters()">清除全部</span>
-//     </div>
-//     <div class="selected-tags-container" id="selected-tags-container"></div>
-// </div>
-
 let writeups = [];
 let loadError = null;
 let activeFilters = {
@@ -178,12 +168,12 @@ function toggleShowAll(type) {
 }
 
 // 修改: 切換篩選
-function toggleFilter(type, tag) {
-    const index = activeFilters[type].indexOf(tag);
+function toggleFilter(platform, tag) {
+    const index = activeFilters[platform].indexOf(tag);
     if (index > -1) {
-        activeFilters[type].splice(index, 1);
+        activeFilters[platform].splice(index, 1);
     } else {
-        activeFilters[type].push(tag);
+        activeFilters[platform].push(tag);
     }
     renderSelectedTags();
     filterWriteups();
@@ -233,7 +223,7 @@ function filterWriteups() {
         const matchesSearch = searchTerm === '' ||
             w.title.toLowerCase().includes(searchTerm) ||
             w.description.toLowerCase().includes(searchTerm) ||
-            w.type.toLowerCase().includes(searchTerm);
+            w.platform.toLowerCase().includes(searchTerm);
 
         const matchesTools = activeFilters.tools.length === 0 ||
             (w.tools && activeFilters.tools.every(tag => w.tools.includes(tag)));
@@ -241,7 +231,6 @@ function filterWriteups() {
         return matchesSearch && matchesTools;
     });
 
-    renderTags(tagSearchTerm, filtered);
     renderWriteups(filtered);
 }
 
@@ -253,7 +242,7 @@ function renderWriteups(writeupsToRender) {
         const card = document.createElement('div');
         card.className = 'writeup-card';
 
-        if (w.type === 'knowledge') {
+        if (w.platform === 'knowledge') {
             card.classList.add('knowledge-card');
         }
 
@@ -288,15 +277,10 @@ function renderWriteups(writeupsToRender) {
         card.querySelectorAll('.writeup-tags .tag').forEach(tagEl => {
             tagEl.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const type = tagEl.dataset.type;
+                const platform = tagEl.dataset.platform;
                 const tag = tagEl.dataset.tag;
 
-                if (type === 'knowledge') {
-                    if (!activeFilters.tools.includes('knowledge')) activeFilters.tools.push('knowledge');
-                    else activeFilters.tools = activeFilters.tools.filter(t => t !== 'knowledge');
-                } else {
-                    toggleFilter(type, tag);
-                }
+                toggleFilter(platform, tag);
             });
         });
     });

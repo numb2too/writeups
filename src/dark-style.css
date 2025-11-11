@@ -156,7 +156,7 @@ h3 {
 
 /* 各類標籤顏色 */
 .tag.tool {
-    border-color: #4CAF50;
+    border-color: #59c018;
     color: #4CAF50;
 }
 
@@ -463,6 +463,32 @@ a:visited {
     transform: translateY(-50%);
     font-size: 16px;
     font-weight: bold;
+}
+
+.github-link {
+    position: fixed;
+    /* 使用 fixed 定位 */
+    bottom: calc(10% + 15px);
+    /* 根据你的 modal-content margin 调整 */
+    right: calc(18%);
+    /* 根据你的 modal-content width 调整 */
+    font-size: 28px;
+    color: #333;
+    background: white;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    z-index: 1001;
+}
+
+.github-link:hover {
+    color: #0066cc;
+    transform: scale(1.1);
 }
 
 /* ====== RESPONSIVE ====== */

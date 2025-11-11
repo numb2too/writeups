@@ -129,10 +129,6 @@ function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteu
         el.textContent = `${tag} (${count})`;
         el.onclick = () => toggleFilter(typeKey, tag);
 
-        if (activeFilters[typeKey].includes(tag)) {
-            el.classList.add('active');
-        }
-
         container.appendChild(el);
     });
 

@@ -331,6 +331,13 @@ document.getElementById('modal').onclick = function (e) {
 
 // 搜尋事件
 document.getElementById('search').addEventListener('input', (e) => {
+    // 清空已選的篩選
+    activeFilters = {
+        os: [],
+        software: [],
+        vulns: [],
+        tools: []
+    };
     const searchTerm = e.target.value;
     renderTags(searchTerm);
     filterWriteups();

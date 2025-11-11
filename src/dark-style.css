@@ -155,43 +155,13 @@ h3 {
 }
 
 /* 各類標籤顏色 */
-.tag.os {
+.tag.tool {
     border-color: #4CAF50;
     color: #4CAF50;
 }
 
-.tag.os.active {
-    background: #4CAF50;
-    color: white;
-}
-
-.tag.software {
-    border-color: #FF9800;
-    color: #FF9800;
-}
-
-.tag.software.active {
-    background: #FF9800;
-    color: white;
-}
-
-.tag.vuln {
-    border-color: #f44336;
-    color: #f44336;
-}
-
-.tag.vuln.active {
-    background: #f44336;
-    color: white;
-}
-
-.tag.tool {
-    border-color: #9C27B0;
-    color: #9C27B0;
-}
-
 .tag.tool.active {
-    background: #9C27B0;
+    background: #4CAF50;
     color: white;
 }
 

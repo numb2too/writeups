@@ -107,19 +107,9 @@ function collectTags(filteredWriteups = null) {
 function renderTags(searchTerm = '', filteredWriteups = null) {
     const tags = collectTags(filteredWriteups);
 
-    const osContainer = document.getElementById('os-tags');
-    const softwareContainer = document.getElementById('software-tags');
-    const vulnContainer = document.getElementById('vuln-tags');
     const toolContainer = document.getElementById('tool-tags');
 
-    osContainer.innerHTML = '';
-    softwareContainer.innerHTML = '';
-    vulnContainer.innerHTML = '';
     toolContainer.innerHTML = '';
-
-    renderTagGroup(Array.from(tags.os), osContainer, 'os', searchTerm, filteredWriteups);
-    renderTagGroup(Array.from(tags.software), softwareContainer, 'software', searchTerm, filteredWriteups);
-    renderTagGroup(Array.from(tags.vulns), vulnContainer, 'vuln', searchTerm, filteredWriteups);
     renderTagGroup(Array.from(tags.tools), toolContainer, 'tool', searchTerm, filteredWriteups);
 }
 

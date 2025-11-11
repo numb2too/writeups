@@ -258,11 +258,33 @@ function renderWriteups(writeupsToRender) {
 
         const platformHtml = w.platform ? `<div class="platform ${w.platform}">${w.platform.toUpperCase()}</div>` : '';
 
+
+        // 假設你的 GitHub repo 是 public，路徑如下（請改成你自己的）
+        const githubBaseUrl = 'https://github.com/numb2too/writeups/blob/main/writeups';
+
+        // 組成對應的 .md 檔案連結
+        const githubUrl = `${githubBaseUrl}/${w.folder}/README.md`;
+
         card.innerHTML = `
                     <div class="writeup-header">
                         <div>
                             <div class="writeup-title">${w.title}</div>
-                            <div style="color: #999; font-size: 12px; margin-top: 5px;">📅 ${w.date}</div>
+                            <span style="color: #999; font-size: 12px; margin-top: 5px;">📅 ${w.date}</span>
+                             <a href="${githubUrl}" 
+               target="_blank" 
+                onclick="event.stopPropagation();" 
+              style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #f5f5f5; transition: 0.2s;">
+                <svg height="18" viewBox="0 0 16 16" width="18" fill="#333" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 0C3.58 0 0 3.58 0 8a8.013 8.013 0 005.47 7.59c.4.075.55-.175.55-.388 
+                    0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487.803.056 
+                    1.225.825 1.225.825.714 1.223 1.872.87 2.327.665.072-.517.28-.87.508-1.07-1.777-.2-3.644-.888-3.644-3.955 
+                    0-.873.312-1.587.824-2.147-.083-.203-.357-1.018.078-2.12 0 0 .67-.215 2.2.82A7.548 
+                    7.548 0 018 4.875a7.55 7.55 0 011.996.27c1.53-1.035 2.198-.82 2.198-.82.437 1.102.163 1.917.08 
+                    2.12.513.56.823 1.274.823 2.147 0 3.073-1.87 3.752-3.65 3.947.288.248.543.736.543 
+                    1.482 0 1.07-.01 1.934-.01 2.197 0 .215.147.466.552.387A8.013 8.013 0 0016 
+                    8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a>
                         </div>
                         ${platformHtml}
                     </div>
@@ -287,30 +309,8 @@ function openModal(writeup) {
     const modal = document.getElementById('modal');
     const body = document.getElementById('modal-body');
 
-
-    // 假設你的 GitHub repo 是 public，路徑如下（請改成你自己的）
-    const githubBaseUrl = 'https://github.com/numb2too/writeups/blob/main/writeups';
-
-    // 組成對應的 .md 檔案連結
-    const githubUrl = `${githubBaseUrl}/${writeup.folder}/README.md`;
-
-
     // 產生 Markdown HTML + GitHub 連結
     body.innerHTML = `
-        <div style="
-            background: #5f5050ff; 
-            padding: 10px 15px; 
-            border-radius: 8px; 
-            margin-bottom: 15px; 
-            text-align: right;
-            color: gray;
-        ">
-            <a href="${githubUrl}" 
-               target="_blank" 
-               style="color: #69a339ff; text-decoration: none; font-weight: bold;">
-                🔗 在 GitHub 查看原始檔
-            </a>
-        </div>
         ${marked.parse(writeup.content)}
     `;
 

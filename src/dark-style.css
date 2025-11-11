@@ -21,17 +21,15 @@ body {
 
 header {
     background: rgba(30, 30, 46, 0.95);
-    padding: 30px;
+    padding: 10px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
 }
 
-h1 {
+h3 {
     color: #a78bfa;
-    font-size: 2.5em;
-    margin-bottom: 10px;
 }
 
 .subtitle {
@@ -389,8 +387,7 @@ h1 {
 /* ====== STATS ====== */
 .stats {
     display: flex;
-    gap: 20px;
-    margin-top: 15px;
+    gap: 10px;
 }
 
 .stat-item {

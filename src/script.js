@@ -129,10 +129,6 @@ function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteu
         el.textContent = `${tag} (${count})`;
         el.onclick = () => toggleFilter(typeKey, tag);
 
-        if (activeFilters[typeKey].includes(tag)) {
-            el.classList.add('active');
-        }
-
         container.appendChild(el);
     });
 
@@ -289,8 +285,18 @@ function renderWriteups(writeupsToRender) {
 function openModal(writeup) {
     const modal = document.getElementById('modal');
     const body = document.getElementById('modal-body');
+    const github = document.getElementById('modal-github');
+    const githubBaseUrl = 'https://github.com/numb2too/writeups/blob/main/writeups';
+    const githubUrl = `${githubBaseUrl}/${writeup.folder}/README.md`;
+    github.href = githubUrl;
     body.innerHTML = `${marked.parse(writeup.content)}`;
     modal.classList.add('active');
+
+    const modalContent = modal.querySelector('.modal-content'); // 获取 modal-content 元素
+
+    // 重置滚动位置到顶部
+    modalContent.scrollTop = 100;
+
 }
 
 function closeModal() {

@@ -18,7 +18,6 @@
             "passthru",
             "meterpreter",
             "reverse_tcp",
-            "Privilege Escalation",
             "CVE-2018-25114",
             "RCE",
             "msfvenom",

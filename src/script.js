@@ -7,7 +7,7 @@ let showAllTags = {
     tools: false
 };
 
-const TAG_DISPLAY_LIMIT = 5;
+const TAG_DISPLAY_LIMIT = 10;
 
 // 修改: 標題/描述搜尋事件
 document.getElementById('search').addEventListener('input', (e) => {
@@ -277,10 +277,9 @@ function renderWriteups(writeupsToRender) {
         card.querySelectorAll('.writeup-tags .tag').forEach(tagEl => {
             tagEl.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const platform = tagEl.dataset.platform;
                 const tag = tagEl.dataset.tag;
 
-                toggleFilter(platform, tag);
+                toggleFilter('tools', tag);
             });
         });
     });

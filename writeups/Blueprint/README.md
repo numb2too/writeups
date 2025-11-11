@@ -422,7 +422,7 @@ Server username: SYSTEM
 
 成功取得 user meterpreter
 
-### Privilege Escalation
+### msfvenom
 嘗試提權
 製作一個 反射 .exe
 > 要注意是 windows/meterpreter/reverse_tcp 不是 x64 

@@ -295,7 +295,8 @@ function openModal(writeup) {
     const modalContent = modal.querySelector('.modal-content'); // 获取 modal-content 元素
 
     // 重置滚动位置到顶部
-    modalContent.scrollTop = 0;
+    modalContent.scrollTop = 100;
+
 }
 
 function closeModal() {

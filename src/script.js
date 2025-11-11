@@ -69,16 +69,10 @@ async function loadWriteupIndex() {
 
 // 初始化
 let activeFilters = {
-    os: [],
-    software: [],
-    vulns: [],
     tools: []
 };
 
 let showAllTags = {
-    os: false,
-    software: false,
-    vulns: false,
     tools: false
 };
 
@@ -87,17 +81,11 @@ const TAG_DISPLAY_LIMIT = 5;
 // 收集所有唯一的標籤（可以基於篩選後的結果）
 function collectTags(filteredWriteups = null) {
     const tags = {
-        os: new Set(),
-        software: new Set(),
-        vulns: new Set(),
         tools: new Set()
     };
     const writeupsToUse = filteredWriteups || writeups;
 
     writeupsToUse.forEach(w => {
-        if (w.os) w.os.forEach(t => tags.os.add(t));
-        if (w.software) w.software.forEach(t => tags.software.add(t));
-        if (w.vulns) w.vulns.forEach(t => tags.vulns.add(t));
         if (w.tools) w.tools.forEach(t => tags.tools.add(t));
     });
     return tags;
@@ -206,7 +194,7 @@ function filterWriteups() {
         const matchesSearch = searchTerm === '' ||
             w.title.toLowerCase().includes(searchTerm) ||
             w.description.toLowerCase().includes(searchTerm) ||
-            (w.tools && w.tools.every(tag => tag.toLowerCase().includes(searchTerm))) ||
+            (w.tools && w.tools.some(tag => tag.toLowerCase().includes(searchTerm))) ||
             w.type.toLowerCase().includes(searchTerm);
 
         const matchesTools = activeFilters.tools.length === 0 ||

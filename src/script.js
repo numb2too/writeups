@@ -70,7 +70,6 @@ async function loadWriteupIndex() {
     } catch (err) {
         console.error('載入錯誤:', err);
         loadError = err.message;
-        loadExampleData();
         return false;
     }
 }

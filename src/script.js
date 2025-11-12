@@ -1,4 +1,5 @@
-let writeups = [];
+let writeups = []; // 完整索引資料（不含內容）
+let loadedContents = {}; // 已載入的內容快取 { folder: content }
 let loadError = null;
 let activeFilters = {
     tools: []
@@ -8,6 +9,9 @@ let showAllTags = {
 };
 
 const TAG_DISPLAY_LIMIT = 10;
+const CARDS_PER_PAGE = 9; // 每頁顯示數量
+let currentPage = 1; // 當前頁數
+let filteredWriteups = []; // 當前篩選結果
 
 // 修改: 標題/描述搜尋事件
 document.getElementById('search').addEventListener('input', (e) => {
@@ -20,7 +24,7 @@ document.getElementById('tag-search').addEventListener('input', (e) => {
     renderTags(searchTerm);
 });
 
-// 載入 writeup 索引
+// ===== 優化重點：只載入索引，不載入內容 =====
 async function loadWriteupIndex() {
     try {
         const writeupResponse = await fetch('data/writeups.json');
@@ -39,38 +43,39 @@ async function loadWriteupIndex() {
             console.warn('無法載入 knowledge.json');
         }
 
-        const allData = [...writeupData, ...knowledgeData];
+        writeups = [...writeupData, ...knowledgeData];
 
-        if (allData.length === 0) {
+        if (writeups.length === 0) {
             throw new Error('沒有成功載入任何資料');
         }
 
-        const promises = allData.map(async (item) => {
-            try {
-                const contentResponse = await fetch(`./writeups/${item.folder}/README.md`);
-                if (!contentResponse.ok) {
-                    console.warn(`無法載入 ${item.folder}`);
-                    return null;
-                }
-                const content = await contentResponse.text();
-                return { ...item, content };
-            } catch (err) {
-                console.warn(`載入 ${item.folder} 時發生錯誤:`, err);
-                return null;
-            }
-        });
-
-        writeups = (await Promise.all(promises)).filter(w => w !== null);
-
-        if (writeups.length === 0) {
-            throw new Error('沒有成功載入任何內容');
-        }
-
+        console.log(`✅ 成功載入 ${writeups.length} 筆索引`);
         return true;
     } catch (err) {
         console.error('載入錯誤:', err);
         loadError = err.message;
         return false;
+    }
+}
+
+// ===== 新增：按需載入內容 =====
+async function loadContent(folder) {
+    // 如果已經載入過，直接返回快取
+    if (loadedContents[folder]) {
+        return loadedContents[folder];
+    }
+
+    try {
+        const response = await fetch(`./writeups/${folder}/README.md`);
+        if (!response.ok) {
+            throw new Error(`無法載入 ${folder}`);
+        }
+        const content = await response.text();
+        loadedContents[folder] = content; // 快取內容
+        return content;
+    } catch (err) {
+        console.warn(`載入 ${folder} 時發生錯誤:`, err);
+        return '# 載入失敗\n\n無法載入此文章內容。';
     }
 }
 
@@ -87,14 +92,14 @@ function collectTags(filteredWriteups = null) {
 }
 
 // 修改: 渲染標籤 (接受標籤搜尋詞)
-function renderTags(tagSearchTerm = '', filteredWriteups = null) {
-    const tags = collectTags(filteredWriteups);
+function renderTags(tagSearchTerm = '', filteredWriteupsParam = null) {
+    const tags = collectTags(filteredWriteupsParam);
     const toolContainer = document.getElementById('tool-tags');
     toolContainer.innerHTML = '';
-    renderTagGroup(Array.from(tags.tools), toolContainer, 'tool', tagSearchTerm, filteredWriteups);
+    renderTagGroup(Array.from(tags.tools), toolContainer, 'tool', tagSearchTerm, filteredWriteupsParam);
 }
 
-function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteups = null) {
+function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteupsParam = null) {
     let filteredTags = tagArray;
 
     // 使用標籤搜尋詞過濾
@@ -104,7 +109,7 @@ function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteu
         );
     }
 
-    const writeupsToCount = filteredWriteups || writeups;
+    const writeupsToCount = filteredWriteupsParam || writeups;
     const typeKey = type === 'vuln' ? 'vulns' : type === 'tool' ? 'tools' : type;
 
     const tagCounts = {};
@@ -114,7 +119,7 @@ function renderTagGroup(tagArray, container, type, tagSearchTerm, filteredWriteu
         ).length;
     });
 
-    if (filteredWriteups) {
+    if (filteredWriteupsParam) {
         filteredTags = filteredTags.filter(tag => tagCounts[tag] > 0);
     }
 
@@ -208,12 +213,11 @@ function clearAllFilters() {
     filterWriteups();
 }
 
-// 修改: 篩選 writeups (只搜尋標題和描述)
+// ===== 優化重點：篩選後重置分頁 =====
 function filterWriteups() {
     const searchTerm = document.getElementById('search').value.toLowerCase();
-    const tagSearchTerm = document.getElementById('tag-search').value.toLowerCase();
 
-    const filtered = writeups.filter(w => {
+    filteredWriteups = writeups.filter(w => {
         // 只搜尋標題和描述
         const matchesSearch = searchTerm === '' ||
             w.title.toLowerCase().includes(searchTerm) ||
@@ -226,14 +230,25 @@ function filterWriteups() {
         return matchesSearch && matchesTools;
     });
 
-    renderWriteups(filtered);
+    currentPage = 1; // 重置到第一頁
+    renderWriteups();
 }
 
-function renderWriteups(writeupsToRender) {
+// ===== 優化重點：分頁渲染 =====
+function renderWriteups() {
     const container = document.getElementById('writeups-container');
+
+    // 計算要顯示的資料
+    const startIndex = 0;
+    const endIndex = currentPage * CARDS_PER_PAGE;
+    const writeupsToRender = filteredWriteups.slice(startIndex, endIndex);
+    const hasMore = endIndex < filteredWriteups.length;
+
+    // 清空容器
     container.innerHTML = '';
 
-    writeupsToRender.forEach((w, index) => {
+    // 渲染卡片
+    writeupsToRender.forEach((w) => {
         const card = document.createElement('div');
         card.className = 'writeup-card';
 
@@ -273,30 +288,82 @@ function renderWriteups(writeupsToRender) {
             tagEl.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const tag = tagEl.dataset.tag;
-
                 toggleFilter('tools', tag);
             });
         });
     });
 
-    document.getElementById('total-count').textContent = writeupsToRender.length;
+    // ===== 新增：顯示更多按鈕 =====
+    if (hasMore) {
+        const loadMoreBtn = document.createElement('div');
+        loadMoreBtn.style.cssText = `
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+        `;
+        loadMoreBtn.innerHTML = `
+            <button id="load-more-btn" style="
+                padding: 12px 30px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            ">
+                載入更多 (剩餘 ${filteredWriteups.length - endIndex} 筆)
+            </button>
+        `;
+        container.appendChild(loadMoreBtn);
+
+        document.getElementById('load-more-btn').onclick = () => {
+            currentPage++;
+            renderWriteups();
+        };
+
+        // 按鈕hover效果
+        document.getElementById('load-more-btn').addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.4)';
+        });
+        document.getElementById('load-more-btn').addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.3)';
+        });
+    }
+
+    // 更新顯示數量
+    document.getElementById('total-count').textContent =
+        `顯示 ${writeupsToRender.length} / ${filteredWriteups.length}`;
 }
 
-function openModal(writeup) {
+// ===== 優化重點：點擊時才載入內容 =====
+async function openModal(writeup) {
     const modal = document.getElementById('modal');
     const body = document.getElementById('modal-body');
     const github = document.getElementById('modal-github');
     const githubBaseUrl = 'https://github.com/numb2too/writeups/blob/main/writeups';
     const githubUrl = `${githubBaseUrl}/${writeup.folder}/README.md`;
     github.href = githubUrl;
-    body.innerHTML = `${marked.parse(writeup.content)}`;
+
+    // 顯示載入中
+    body.innerHTML = `
+        <div style="text-align: center; padding: 50px; color: #999;">
+            <div style="font-size: 24px; margin-bottom: 10px;">⏳</div>
+            <div>載入中...</div>
+        </div>
+    `;
     modal.classList.add('active');
 
-    const modalContent = modal.querySelector('.modal-content'); // 获取 modal-content 元素
+    // 非同步載入內容
+    const content = await loadContent(writeup.folder);
+    body.innerHTML = `${marked.parse(content)}`;
 
-    // 重置滚动位置到顶部
-    modalContent.scrollTop = 100;
-
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.scrollTop = 0;
 }
 
 function closeModal() {
@@ -324,8 +391,9 @@ async function init() {
         header.appendChild(warning);
     }
 
+    filteredWriteups = [...writeups];
     renderTags();
-    renderWriteups(writeups);
+    renderWriteups();
 }
 
 init();

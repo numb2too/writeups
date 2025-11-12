@@ -204,7 +204,7 @@ osCommerce 2.3.4.1 - Remote Code Execution (2)           | php/webapps/50128.py
 Shellcodes: No Results
 ```
 
-利用 `php/webapps/50128.py`  或參考 [exploit.py](exploit.py)
+利用 `php/webapps/50128.py`  或參考 [exploit.py](../CVE-2018-25114/exploit.py)
 確認該 POC 路徑
 ```bash                   
 ┌──(kali㉿kali)-[~/tryhackme/blueprint]
@@ -218,8 +218,7 @@ File Type: Python script, ASCII text executable
 Copied EDB-ID #50128's path to the clipboard
 ```
 > 為什麼要加 DIR_FS_DOCUMENT_ROOT 可參考 [說明](QA-document-root.md)  
-> 為什麼用 pssthru 可參考 [說明](QA-passthru.md)
-
+> 為什麼用 pssthru 可參考 [說明](../php-passthru/README.md)
 
 #### get system user
 使用 POC  
@@ -515,7 +514,7 @@ Guest:501:aa...ee:31...c0:::
 Lab:1000:aa...ee:30...50:::
 meterpreter > 
 ```
-> 可參考 [QA-decrypted](QA-decrypted.md) 破解 hash
+> 可參考 [NTLM](../NTLM/README.md) 破解 hash
 
 取得 admin shell 拿到 root.txt
 ```bash

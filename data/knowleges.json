@@ -3,7 +3,8 @@
         "title": "smbclient",
         "description": "SMB/CIFS（Windows 網路共享） 服務互動的命令行工具",
         "tools": [
-            "smbclient"
+            "smbclient",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "smbclient",
@@ -40,10 +41,13 @@
     },
     {
         "title": "mimikatz",
-        "description": "取得 ntlm",
+        "description": "Windows 憑證與認證工具",
         "tools": [
             "mimikatz",
-            "NTLM"
+            "NTLM",
+            "hash",
+            "sam",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "mimikatz",
@@ -74,10 +78,59 @@
         "tools": [
             "NTLM",
             "hashcat",
-            "john"
+            "john",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "NTLM",
+        "platform": "knowledge"
+    },
+    {
+        "title": "ssh",
+        "description": "ssh",
+        "tools": [
+            "ssh",
+            "隧道"
+        ],
+        "date": "2025-11-12",
+        "folder": "ssh",
+        "platform": "knowledge"
+    },
+    {
+        "title": "meterpreter",
+        "description": "meterpreter",
+        "tools": [
+            "meterpreter"
+        ],
+        "date": "2025-11-12",
+        "folder": "meterpreter",
+        "platform": "knowledge"
+    },
+    {
+        "title": "powershell",
+        "description": "powershell",
+        "tools": [
+            "powershell",
+            "windows"
+        ],
+        "date": "2025-11-12",
+        "folder": "powershell",
+        "platform": "knowledge"
+    },
+    {
+        "title": "sam",
+        "description": "sam",
+        "tools": [
+            "sam",
+            "windows",
+            "hash",
+            "User Accounts",
+            "NTLM",
+            "mimikatz",
+            "pwdump"
+        ],
+        "date": "2025-11-12",
+        "folder": "sam",
         "platform": "knowledge"
     }
 ]

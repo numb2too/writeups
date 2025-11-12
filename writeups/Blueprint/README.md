@@ -217,7 +217,7 @@ Shellcodes: No Results
 File Type: Python script, ASCII text executable
 Copied EDB-ID #50128's path to the clipboard
 ```
-> 為什麼要加 DIR_FS_DOCUMENT_ROOT 可參考 [說明](QA-document-root.md)  
+> 為什麼要加 DIR_FS_DOCUMENT_ROOT 可參考 [說明](../CVE-2018-25114/README.md)  
 > 為什麼用 pssthru 可參考 [說明](../php-passthru/README.md)
 
 #### get system user

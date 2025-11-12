@@ -79,5 +79,16 @@
         "date": "2025-11-11",
         "folder": "NTLM",
         "platform": "knowledge"
+    },
+    {
+        "title": "ssh",
+        "description": "ssh",
+        "tools": [
+            "ssh",
+            "隧道"
+        ],
+        "date": "2025-11-12",
+        "folder": "ssh",
+        "platform": "knowledge"
     }
 ]

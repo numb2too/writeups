@@ -9,14 +9,16 @@
             "passthru",
             "mimikatz",
             "NTLM",
-            "decode",
+            "brute‑force",
             "msfconsle",
             "meterpreter",
             "reverse_tcp",
             "RCE",
             "CVE-2018-25114",
             "osCommerce 2.3.4.1",
-            "msfvenom"
+            "msfvenom",
+            "powershell",
+            "sam"
         ],
         "date": "2025-11-11",
         "folder": "Blueprint",

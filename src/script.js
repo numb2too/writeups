@@ -303,8 +303,6 @@ async function openModal(writeup) {
 
     const content = await loadContent(writeup.folder);
     body.innerHTML = marked.parse(content);
-
-    modal.querySelector('.modal-content').scrollTop = 0;
 }
 
 function closeModal() {

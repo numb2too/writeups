@@ -361,7 +361,7 @@ h3 {
 
 .modal-content {
     background: #1e1e2e;
-    padding: 40px;
+    padding: 20px;
     border-radius: 15px;
     max-width: 900px;
     width: 100%;
@@ -371,16 +371,27 @@ h3 {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.close-btn {
-    font-size: 30px;
+/* Modal 頂部按鈕區 */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
     position: sticky;
     top: 0;
-    margin-left: auto;
-    display: block;
-    width: fit-content;
+    z-index: 10;
+}
+
+.close-btn {
+    font-size: 30px;
     cursor: pointer;
     color: #9ca3af;
     transition: color 0.3s;
+    line-height: 1;
+    padding: 0;
+    background: none;
+    border: none;
 }
 
 .close-btn:hover {
@@ -389,27 +400,26 @@ h3 {
 
 /* Modal 內的 GitHub 連結 */
 .modal-content .github-link {
-    display: flex;
-    position: sticky;
-    font-size: 28px;
-    color: #333;
-    border-radius: 50%;
-    background: white;
-    margin-left: auto;
-    height: 45px;
-    top: calc(80% + 10px);
-    width: 45px;
-    cursor: pointer;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    color: #333;
     transition: all 0.3s;
-    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content .github-link:hover {
     background: rgba(255, 255, 255, 0.9);
     transform: scale(1.1);
+}
+
+.modal-content .github-link svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* ========== 載入動畫 ========== */

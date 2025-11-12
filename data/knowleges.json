@@ -44,7 +44,8 @@
         "tools": [
             "mimikatz",
             "NTLM",
-            "hash"
+            "hash",
+            "sam"
         ],
         "date": "2025-11-11",
         "folder": "mimikatz",
@@ -90,6 +91,42 @@
         ],
         "date": "2025-11-12",
         "folder": "ssh",
+        "platform": "knowledge"
+    },
+    {
+        "title": "meterpreter",
+        "description": "meterpreter",
+        "tools": [
+            "meterpreter"
+        ],
+        "date": "2025-11-12",
+        "folder": "meterpreter",
+        "platform": "knowledge"
+    },
+    {
+        "title": "powershell",
+        "description": "powershell",
+        "tools": [
+            "powershell"
+        ],
+        "date": "2025-11-12",
+        "folder": "powershell",
+        "platform": "knowledge"
+    },
+    {
+        "title": "sam",
+        "description": "sam",
+        "tools": [
+            "sam",
+            "windows",
+            "hash",
+            "User Accounts",
+            "NTLM",
+            "mimikatz",
+            "pwdump"
+        ],
+        "date": "2025-11-12",
+        "folder": "sam",
         "platform": "knowledge"
     }
 ]

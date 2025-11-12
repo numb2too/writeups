@@ -3,7 +3,8 @@
         "title": "smbclient",
         "description": "SMB/CIFS（Windows 網路共享） 服務互動的命令行工具",
         "tools": [
-            "smbclient"
+            "smbclient",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "smbclient",
@@ -45,7 +46,8 @@
             "mimikatz",
             "NTLM",
             "hash",
-            "sam"
+            "sam",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "mimikatz",
@@ -76,7 +78,8 @@
         "tools": [
             "NTLM",
             "hashcat",
-            "john"
+            "john",
+            "windows"
         ],
         "date": "2025-11-11",
         "folder": "NTLM",
@@ -107,7 +110,8 @@
         "title": "powershell",
         "description": "powershell",
         "tools": [
-            "powershell"
+            "powershell",
+            "windows"
         ],
         "date": "2025-11-12",
         "folder": "powershell",

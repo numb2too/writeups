@@ -1,11 +1,11 @@
-/* ====== RESET ====== */
+/* ========== RESET ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ====== BODY ====== */
+/* ========== BODY & LAYOUT ========== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -13,12 +13,12 @@ body {
     padding: 20px;
 }
 
-/* ====== LAYOUT ====== */
 .container {
     max-width: 1400px;
     margin: 0 auto;
 }
 
+/* ========== HEADER ========== */
 header {
     background: rgba(30, 30, 46, 0.95);
     padding: 10px;
@@ -32,17 +32,29 @@ h3 {
     color: #a78bfa;
 }
 
-.subtitle {
-    color: #d1d5db;
-    font-size: 1.1em;
+.stats {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #d1d5db;
+    font-size: 14px;
+}
+
+/* ========== MAIN LAYOUT ========== */
 .main-content {
     display: grid;
     grid-template-columns: 300px 1fr;
     gap: 20px;
 }
 
+/* ========== SIDEBAR ========== */
 .sidebar {
     background: rgba(30, 30, 46, 0.95);
     padding: 25px;
@@ -54,7 +66,7 @@ h3 {
     top: 20px;
 }
 
-/* ====== SEARCH ====== */
+/* ========== SEARCH BOX ========== */
 .search-box {
     width: 100%;
     padding: 12px;
@@ -76,397 +88,7 @@ h3 {
     border-color: #a78bfa;
 }
 
-/* ====== GITHUB BUTTON ====== */
-.github-star {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 15px;
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.github-star:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-}
-
-.github-star svg {
-    width: 18px;
-    height: 18px;
-}
-
-/* ====== FILTER & TAGS ====== */
-.filter-section {
-    margin-bottom: 25px;
-}
-
-.filter-title {
-    font-weight: bold;
-    color: #e5e7eb;
-    margin-bottom: 12px;
-    font-size: 1.1em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.show-more-btn {
-    font-size: 11px;
-    color: #a78bfa;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-
-.show-more-btn:hover {
-    background: rgba(167, 139, 250, 0.2);
-}
-
-.tag-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.tag {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    background: rgba(0, 0, 0, 0.3);
-    color: #d1d5db;
-}
-
-.tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 各類標籤顏色 */
-.tag.tool {
-    border-color: #59c018;
-    color: #4CAF50;
-}
-
-.tag.tool.active {
-    background: #4CAF50;
-    color: white;
-}
-
-/* ====== WRITEUP CARDS ====== */
-.writeups-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
-}
-
-.writeup-card {
-    background: rgba(30, 30, 46, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-}
-
-.writeup-card.knowledge-card {
-    border-left: 4px solid #00BCD4;
-}
-
-
-.writeup-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    border-color: rgba(167, 139, 250, 0.5);
-}
-
-.writeup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    margin-bottom: 15px;
-}
-
-.writeup-title {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #f3f4f6;
-    margin-bottom: 5px;
-}
-
-.platform {
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.platform.thm {
-    background: #88cc14;
-    color: white;
-}
-
-.platform.knowledge {
-    background: #a08ee3;
-    color: white;
-}
-
-.platform.htb {
-    background: #9fef00;
-    color: #111;
-}
-
-.writeup-desc {
-    color: #d1d5db;
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.writeup-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-/* ====== MODAL ====== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-.modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-content {
-    background: #1e1e2e;
-    padding: 40px;
-    border-radius: 15px;
-    max-width: 900px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-
-.close-btn {
-    font-size: 30px;
-    position: sticky;
-    top: 0;
-    margin-left: auto;
-    /* 靠右 */
-    display: block;
-    width: fit-content;
-    cursor: pointer;
-    color: #9ca3af;
-    transition: color 0.3s;
-}
-
-
-.close-btn:hover {
-    color: #f3f4f6;
-}
-
-/* ====== MARKDOWN ====== */
-.markdown-content {
-    color: #e5e7eb;
-    line-height: 1.8;
-}
-
-.markdown-content h1 {
-    color: #a78bfa;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-.markdown-content h2 {
-    color: #d1d5db;
-    margin-top: 25px;
-    margin-bottom: 12px;
-}
-
-.markdown-content code {
-    background: rgba(0, 0, 0, 0.4);
-    color: #c4b5fd;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
-}
-
-.markdown-content pre {
-    background: #0d1117;
-    color: #e5e7eb;
-    padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin: 15px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.markdown-content pre code {
-    background: none;
-    color: inherit;
-    padding: 0;
-}
-
-/* ====== MARKDOWN LIST STYLING ====== */
-.markdown-content ul,
-.markdown-content ol {
-    margin: 15px 0 15px 25px;
-    /* 左側縮排距離 */
-    padding-left: 20px;
-    /* 項目縮排 */
-}
-
-.markdown-content li {
-    margin: 6px 0;
-    line-height: 1.7;
-}
-
-/* 第二層以後的列表再縮排一點 */
-.markdown-content ul ul,
-.markdown-content ol ol,
-.markdown-content ul ol,
-.markdown-content ol ul {
-    margin-top: 6px;
-    margin-bottom: 6px;
-    margin-left: 25px;
-}
-
-/* 有序清單（1. 2. 3.）美化 */
-.markdown-content ol {
-    list-style-type: decimal;
-}
-
-/* 無序清單（•）改成圓點＋柔色 */
-.markdown-content ul {
-    list-style-type: disc;
-}
-
-.markdown-content ul li::marker {
-    color: #a78bfa;
-    /* 淡紫色圓點 */
-}
-
-/* 有序清單的數字顏色統一柔和紫 */
-.markdown-content ol li::marker {
-    color: #c4b5fd;
-}
-
-/* 如果項目內還有 code、strong 等，確保排版漂亮 */
-.markdown-content li code {
-    background: rgba(255, 255, 255, 0.08);
-    color: #c4b5fd;
-    padding: 2px 5px;
-    border-radius: 4px;
-}
-
-/* 項目標題過長時自動換行對齊 */
-.markdown-content li {
-    word-break: break-word;
-}
-
-
-/* ====== STATS ====== */
-.stats {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.stat-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #d1d5db;
-    font-size: 14px;
-}
-
-/* 超連結樣式（適合暗色主題） */
-a {
-    color: #a5b4fc;
-    /* 柔和亮紫藍色 */
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #c4b5fd;
-    /* hover 時更亮 */
-    text-decoration: underline;
-}
-
-a:visited {
-    color: #9383e8;
-    /* 已訪問連結稍微暗一點 */
-}
-
-/* Markdown 表格樣式（適合暗色主題） */
-.markdown-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    overflow: hidden;
-    font-size: 14px;
-}
-
-.markdown-content th,
-.markdown-content td {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 10px 14px;
-    text-align: left;
-    color: #e5e7eb;
-}
-
-.markdown-content th {
-    background: rgba(167, 139, 250, 0.15);
-    /* 標題列淡紫色背景 */
-    color: #c4b5fd;
-    font-weight: bold;
-}
-
-.markdown-content tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.05);
-    /* 偶數行條紋效果 */
-}
-
-.markdown-content tr:hover {
-    background: rgba(167, 139, 250, 0.1);
-    /* 滑鼠懸停行高亮 */
-    transition: background 0.3s;
-}
-
-/* ====== 已選擇標籤區塊 ====== */
+/* ========== 已選擇標籤區塊 ========== */
 .selected-tags-section {
     background: rgba(167, 139, 250, 0.1);
     border: 2px solid rgba(167, 139, 250, 0.3);
@@ -509,7 +131,45 @@ a:visited {
     gap: 8px;
 }
 
-/* 已選擇的標籤樣式 */
+/* ========== FILTER SECTION ========== */
+.filter-section {
+    margin-bottom: 25px;
+}
+
+.tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ========== 標籤樣式 ========== */
+.tag {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    color: #d1d5db;
+}
+
+.tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tool 標籤 */
+.tag.tool {
+    border-color: #59c018;
+    color: #4CAF50;
+}
+
+.tag.tool:hover {
+    background: rgba(76, 175, 80, 0.2);
+}
+
+/* 已選擇的標籤 */
 .tag.selected {
     background: #4CAF50;
     border-color: #4CAF50;
@@ -528,8 +188,207 @@ a:visited {
     font-weight: bold;
 }
 
+/* 顯示更多/較少按鈕 */
+.tag.toggle-btn {
+    font-weight: bold;
+    border-style: dashed;
+}
+
+/* 無結果提示 */
+.no-result {
+    color: #999;
+    font-size: 12px;
+    padding: 5px;
+}
+
+/* ========== WRITEUP CARDS ========== */
+.writeups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.writeup-card {
+    background: rgba(30, 30, 46, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.writeup-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(167, 139, 250, 0.5);
+}
+
+.writeup-card.knowledge-card {
+    border-left: 4px solid #00BCD4;
+}
+
+.writeup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.writeup-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #f3f4f6;
+    margin-bottom: 5px;
+}
+
+.writeup-date {
+    color: #999;
+    font-size: 12px;
+    margin-top: 5px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.writeup-desc {
+    color: #d1d5db;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.writeup-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ========== PLATFORM 標籤 ========== */
+.platform {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.platform.htb {
+    background: #9fef00;
+    color: #111;
+}
+
+.platform.thm {
+    background: #88cc14;
+    color: white;
+}
+
+.platform.picoctf {
+    background: #00a5ff;
+    color: white;
+}
+
+.platform.knowledge {
+    background: #a08ee3;
+    color: white;
+}
+
+/* ========== GITHUB LINK (卡片內) ========== */
 .github-link {
-    /* 默认隐藏 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    transition: 0.2s;
+}
+
+.github-link:hover {
+    background: #e0e0e0;
+    transform: scale(1.1);
+}
+
+/* ========== 載入更多按鈕 ========== */
+.load-more-wrapper {
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+    grid-column: 1 / -1;
+}
+
+.load-more-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.load-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.load-more-btn:active {
+    transform: translateY(0);
+}
+
+/* ========== MODAL ========== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #1e1e2e;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-btn {
+    font-size: 30px;
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    display: block;
+    width: fit-content;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #f3f4f6;
+}
+
+/* Modal 內的 GitHub 連結 */
+.modal-content .github-link {
     display: flex;
     position: sticky;
     font-size: 28px;
@@ -548,12 +407,215 @@ a:visited {
     z-index: 1001;
 }
 
-.github-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+.modal-content .github-link:hover {
+    background: rgba(255, 255, 255, 0.9);
     transform: scale(1.1);
 }
 
-/* ====== RESPONSIVE ====== */
+/* ========== 載入動畫 ========== */
+.loading-spinner {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+
+.loading-spinner div:first-child {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* ========== MARKDOWN 內容 ========== */
+.markdown-content {
+    color: #e5e7eb;
+    line-height: 1.8;
+}
+
+.markdown-content h1 {
+    color: #a78bfa;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.markdown-content h2 {
+    color: #d1d5db;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+.markdown-content h3,
+.markdown-content h4 {
+    color: #d1d5db;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.markdown-content p {
+    margin: 15px 0;
+}
+
+/* 連結 */
+.markdown-content a {
+    color: #a5b4fc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.markdown-content a:hover {
+    color: #c4b5fd;
+    text-decoration: underline;
+}
+
+.markdown-content a:visited {
+    color: #9383e8;
+}
+
+/* 程式碼 */
+.markdown-content code {
+    background: rgba(0, 0, 0, 0.4);
+    color: #c4b5fd;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+.markdown-content pre {
+    background: #0d1117;
+    color: #e5e7eb;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+/* 列表 */
+.markdown-content ul,
+.markdown-content ol {
+    margin: 15px 0 15px 25px;
+    padding-left: 20px;
+}
+
+.markdown-content li {
+    margin: 6px 0;
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+.markdown-content ul ul,
+.markdown-content ol ol,
+.markdown-content ul ol,
+.markdown-content ol ul {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 25px;
+}
+
+.markdown-content ol {
+    list-style-type: decimal;
+}
+
+.markdown-content ul {
+    list-style-type: disc;
+}
+
+.markdown-content ul li::marker {
+    color: #a78bfa;
+}
+
+.markdown-content ol li::marker {
+    color: #c4b5fd;
+}
+
+.markdown-content li code {
+    background: rgba(255, 255, 255, 0.08);
+    color: #c4b5fd;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* 表格 */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 14px;
+    text-align: left;
+    color: #e5e7eb;
+}
+
+.markdown-content th {
+    background: rgba(167, 139, 250, 0.15);
+    color: #c4b5fd;
+    font-weight: bold;
+}
+
+.markdown-content tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.markdown-content tr:hover {
+    background: rgba(167, 139, 250, 0.1);
+    transition: background 0.3s;
+}
+
+/* 圖片 */
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+/* 引用 */
+.markdown-content blockquote {
+    border-left: 4px solid #a78bfa;
+    padding-left: 15px;
+    margin: 15px 0;
+    color: #d1d5db;
+    font-style: italic;
+}
+
+/* ========== 開發警告 ========== */
+.dev-warning {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.dev-warning strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dev-warning span {
+    color: #856404;
+}
+
+.dev-warning small {
+    color: #666;
+    display: block;
+    margin-top: 5px;
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 968px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -565,5 +627,33 @@ a:visited {
 
     .writeups-grid {
         grid-template-columns: 1fr;
+    }
+
+    .writeup-card {
+        padding: 15px;
+    }
+
+    .writeup-title {
+        font-size: 1.2em;
+    }
+
+    .load-more-btn {
+        width: 100%;
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .tag {
+        font-size: 11px;
+        padding: 4px 10px;
     }
 }

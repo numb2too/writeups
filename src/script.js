@@ -36,7 +36,14 @@ async function loadWriteupIndex() {
             throw new Error('沒有成功載入任何資料');
         }
 
-        console.log(`✅ 成功載入 ${writeups.length} 筆索引`);
+        // 按日期排序（新到舊）
+        writeups.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA; // 降序排列
+        });
+
+        console.log(`✅ 成功載入 ${writeups.length} 筆索引（已按日期排序）`);
         return true;
     } catch (err) {
         console.error('載入錯誤:', err);

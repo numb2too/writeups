@@ -40,10 +40,11 @@
     },
     {
         "title": "mimikatz",
-        "description": "取得 ntlm",
+        "description": "Windows 憑證與認證工具",
         "tools": [
             "mimikatz",
-            "NTLM"
+            "NTLM",
+            "hash"
         ],
         "date": "2025-11-11",
         "folder": "mimikatz",

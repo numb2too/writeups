@@ -56,11 +56,9 @@ async function loadContent(folder) {
     if (loadedContents[folder]) {
         return loadedContents[folder];
     }
-
     try {
         const response = await fetch(`./writeups/${folder}/README.md`);
         if (!response.ok) throw new Error(`無法載入 ${folder}`);
-
         const content = await response.text();
         loadedContents[folder] = content;
         return content;
@@ -309,15 +307,19 @@ async function openModal(writeup) {
     const modal = document.getElementById('modal');
     const body = document.getElementById('modal-body');
     const github = document.getElementById('modal-github');
-
     github.href = `https://github.com/numb2too/writeups/blob/main/writeups/${writeup.folder}/README.md`;
-
     body.innerHTML = '<div class="loading-spinner"><div>⏳</div><div>載入中...</div></div>';
     modal.classList.add('active');
 
     const content = await loadContent(writeup.folder);
-    body.innerHTML = marked.parse(content);
+    // 修正圖片路徑
+    const fixedContent = content.replace(
+        /!\[([^\]]*)\]\((?!https?:\/\/)([^)]+)\)/g,
+        `![$1](./writeups/${writeup.folder}/$2)`
+    );
+    body.innerHTML = marked.parse(fixedContent);
 }
+
 
 function closeModal() {
     document.getElementById('modal').classList.remove('active');

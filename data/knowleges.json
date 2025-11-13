@@ -152,5 +152,25 @@
         "date": "2025-11-13",
         "folder": "feroxbuster",
         "platform": "knowledge"
+    },
+    {
+        "title": "binwalk",
+        "description": "binwalk",
+        "tools": [
+            "binwalk"
+        ],
+        "date": "2025-11-13",
+        "folder": "binwalk",
+        "platform": "knowledge"
+    },
+    {
+        "title": "strings",
+        "description": "strings",
+        "tools": [
+            "strings"
+        ],
+        "date": "2025-11-13",
+        "folder": "strings",
+        "platform": "knowledge"
     }
 ]

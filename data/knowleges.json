@@ -172,5 +172,15 @@
         "date": "2025-11-13",
         "folder": "strings",
         "platform": "knowledge"
+    },
+    {
+        "title": "exiftool",
+        "description": "exiftool",
+        "tools": [
+            "exiftool"
+        ],
+        "date": "2025-11-13",
+        "folder": "exiftool",
+        "platform": "knowledge"
     }
 ]

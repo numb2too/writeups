@@ -132,5 +132,25 @@
         "date": "2025-11-12",
         "folder": "sam",
         "platform": "knowledge"
+    },
+    {
+        "title": "nmap",
+        "description": "nmap",
+        "tools": [
+            "nmap"
+        ],
+        "date": "2025-11-13",
+        "folder": "nmap",
+        "platform": "knowledge"
+    },
+    {
+        "title": "feroxbuster",
+        "description": "feroxbuster",
+        "tools": [
+            "feroxbuster"
+        ],
+        "date": "2025-11-13",
+        "folder": "feroxbuster",
+        "platform": "knowledge"
     }
 ]

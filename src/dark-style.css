@@ -28,10 +28,6 @@ header {
     margin-bottom: 30px;
 }
 
-h3 {
-    color: #a78bfa;
-}
-
 .stats {
     display: flex;
     gap: 10px;
@@ -444,12 +440,14 @@ h3 {
     color: #a78bfa;
     margin-top: 30px;
     margin-bottom: 15px;
+    border-bottom: 1px solid gray;
 }
 
 .markdown-content h2 {
     color: #d1d5db;
     margin-top: 25px;
     margin-bottom: 12px;
+    border-bottom: 1px solid gray;
 }
 
 .markdown-content h3,

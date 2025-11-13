@@ -83,6 +83,7 @@ function renderTags(tagSearchTerm = '') {
     const tags = collectTags();
     const toolContainer = document.getElementById('tool-tags');
     toolContainer.innerHTML = '';
+
     renderTagGroup(tags.tools, toolContainer, 'tools', tagSearchTerm);
 }
 
@@ -182,13 +183,17 @@ function renderSelectedTags() {
         el.onclick = () => toggleFilter('tools', tag);
         container.appendChild(el);
     });
+
+    const tagSearch = document.getElementById('tag-search');
+    tagSearch.value = '';
+
+
 }
 
 function clearAllFilters() {
     activeFilters = { tools: [] };
     renderSelectedTags();
     filterWriteups();
-    renderTags(); // 重新渲染標籤以更新數量
 }
 
 // ========== 篩選與渲染 ==========
@@ -229,6 +234,7 @@ function renderWriteups() {
     }
 
     updateCount(writeupsToRender.length, filteredWriteups.length);
+    renderTags(); // 重新渲染標籤以更新數量
 }
 
 function createWriteupCard(w) {

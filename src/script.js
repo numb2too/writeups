@@ -188,6 +188,7 @@ function clearAllFilters() {
     activeFilters = { tools: [] };
     renderSelectedTags();
     filterWriteups();
+    renderTags(); // 重新渲染標籤以更新數量
 }
 
 // ========== 篩選與渲染 ==========
@@ -207,7 +208,7 @@ function filterWriteups() {
     });
 
     currentPage = 1;
-    renderTags(); // 重新渲染標籤以更新數量
+
     renderWriteups();
 }
 

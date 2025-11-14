@@ -87,7 +87,10 @@
             "sc",
             "curl下載檔案",
             "Privilege Enumcation",
-            "Windows提權手動確認步驟"
+            "Windows提權手動確認步驟",
+            "x86_64-w64-mingw32-gcc-win32",
+            "c語言",
+            "編譯C"
         ],
         "date": "2025-11-14",
         "folder": "hacksmartersecurity"

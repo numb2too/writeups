@@ -426,7 +426,8 @@
         "description": "evil-winrm",
         "tools": [
             "knowledge",
-            "evil-winrm"
+            "evil-winrm",
+            "winrm"
         ],
         "date": "2025-11-14",
         "folder": "evil-winrm",
@@ -454,6 +455,17 @@
         ],
         "date": "2025-11-14",
         "folder": "dir-force",
+        "platform": "knowledge"
+    },
+    {
+        "title": "python",
+        "description": "python",
+        "tools": [
+            "knowledge",
+            "python"
+        ],
+        "date": "2025-11-14",
+        "folder": "python",
         "platform": "knowledge"
     }
 ]

@@ -3,17 +3,19 @@
         "title": "smbclient",
         "description": "SMB/CIFS（Windows 網路共享） 服務互動的命令行工具",
         "tools": [
+            "knowledge",
             "smbclient",
             "windows"
         ],
         "date": "2025-11-11",
         "folder": "smbclient",
-        "platform": "knowledge"
+        "platform": ""
     },
     {
         "title": "CVE-2018-25114",
         "description": "osCommerce 2.3.4 有個 RCE 漏洞",
         "tools": [
+            "knowledge",
             "osCommerce 2.3.4.1",
             "php",
             "passthru",
@@ -32,6 +34,7 @@
         "title": "php-passthru",
         "description": "用於執行外部程式並直接將輸出傳送到瀏覽器",
         "tools": [
+            "knowledge",
             "php",
             "passthru"
         ],
@@ -43,6 +46,7 @@
         "title": "mimikatz",
         "description": "Windows 憑證與認證工具",
         "tools": [
+            "knowledge",
             "mimikatz",
             "NTLM",
             "hash",
@@ -57,6 +61,7 @@
         "title": "hash-tools",
         "description": "hash-tools",
         "tools": [
+            "knowledge",
             "NTLM",
             "NT",
             "LM",
@@ -66,7 +71,8 @@
             "decode",
             "base64",
             "decrypt",
-            "hash"
+            "hash",
+            "brute‑force"
         ],
         "date": "2025-11-11",
         "folder": "hash-tools",
@@ -76,6 +82,7 @@
         "title": "NTLM",
         "description": "NTLM（NT LAN Manager）是一種由 Microsoft 微軟 開發的 驗證（Authentication）協定",
         "tools": [
+            "knowledge",
             "NTLM",
             "hashcat",
             "john",
@@ -89,6 +96,7 @@
         "title": "ssh",
         "description": "ssh",
         "tools": [
+            "knowledge",
             "ssh",
             "隧道"
         ],
@@ -100,6 +108,7 @@
         "title": "meterpreter",
         "description": "meterpreter",
         "tools": [
+            "knowledge",
             "meterpreter"
         ],
         "date": "2025-11-12",
@@ -110,8 +119,11 @@
         "title": "powershell",
         "description": "powershell",
         "tools": [
+            "knowledge",
             "powershell",
-            "windows"
+            "windows",
+            "cmdlet",
+            ".net"
         ],
         "date": "2025-11-12",
         "folder": "powershell",
@@ -121,6 +133,7 @@
         "title": "sam",
         "description": "sam",
         "tools": [
+            "knowledge",
             "sam",
             "windows",
             "hash",
@@ -131,6 +144,316 @@
         ],
         "date": "2025-11-12",
         "folder": "sam",
+        "platform": "knowledge"
+    },
+    {
+        "title": "nmap",
+        "description": "nmap",
+        "tools": [
+            "knowledge",
+            "nmap"
+        ],
+        "date": "2025-11-13",
+        "folder": "nmap",
+        "platform": "knowledge"
+    },
+    {
+        "title": "feroxbuster",
+        "description": "feroxbuster",
+        "tools": [
+            "knowledge",
+            "feroxbuster",
+            "directories"
+        ],
+        "date": "2025-11-13",
+        "folder": "feroxbuster",
+        "platform": "knowledge"
+    },
+    {
+        "title": "binwalk",
+        "description": "binwalk",
+        "tools": [
+            "knowledge",
+            "binwalk",
+            "jpg"
+        ],
+        "date": "2025-11-13",
+        "folder": "binwalk",
+        "platform": "knowledge"
+    },
+    {
+        "title": "strings",
+        "description": "strings",
+        "tools": [
+            "knowledge",
+            "strings",
+            "jpg"
+        ],
+        "date": "2025-11-13",
+        "folder": "strings",
+        "platform": "knowledge"
+    },
+    {
+        "title": "exiftool",
+        "description": "exiftool",
+        "tools": [
+            "knowledge",
+            "exiftool",
+            "jpg"
+        ],
+        "date": "2025-11-13",
+        "folder": "exiftool",
+        "platform": "knowledge"
+    },
+    {
+        "title": "steghide",
+        "description": "steghide",
+        "tools": [
+            "knowledge",
+            "steghide",
+            "jpg",
+            "wav",
+            "au",
+            "bmp",
+            "jpeg"
+        ],
+        "date": "2025-11-13",
+        "folder": "steghide",
+        "platform": "knowledge"
+    },
+    {
+        "title": "enum4linux",
+        "description": "Windows/Samba 網路資訊枚舉工具 滲透測試（特別是 SMB/NetBIOS 環境）",
+        "tools": [
+            "knowledge",
+            "enum4linux"
+        ],
+        "date": "2025-11-13",
+        "folder": "enum4linux",
+        "platform": "knowledge"
+    },
+    {
+        "title": "onesixtyone",
+        "description": "SNMP 掃描工具",
+        "tools": [
+            "knowledge",
+            "onesixtyone",
+            "SNMP"
+        ],
+        "date": "2025-11-13",
+        "folder": "onesixtyone",
+        "platform": "knowledge"
+    },
+    {
+        "title": "SNMP",
+        "description": "Simple Network Management Protocol，簡單網路管理協定",
+        "tools": [
+            "knowledge",
+            "SNMP",
+            "161",
+            "162"
+        ],
+        "date": "2025-11-13",
+        "folder": "SNMP",
+        "platform": "knowledge"
+    },
+    {
+        "title": "snmp-check",
+        "description": "snmp-check",
+        "tools": [
+            "knowledge",
+            "snmp-check",
+            "SNMP"
+        ],
+        "date": "2025-11-13",
+        "folder": "snmp-check",
+        "platform": "knowledge"
+    },
+    {
+        "title": "cewl",
+        "description": "密碼字典生成工具",
+        "tools": [
+            "knowledge",
+            "cewl",
+            "自製字典",
+            "cat",
+            "sort",
+            "wc",
+            "EOF",
+            "python",
+            "john",
+            "hashcat",
+            "變體",
+            "Mentalist",
+            "echo"
+        ],
+        "date": "2025-11-13",
+        "folder": "cewl",
+        "platform": "knowledge"
+    },
+    {
+        "title": "snmpwalk",
+        "description": "snmpwalk",
+        "tools": [
+            "knowledge",
+            "snmpwalk",
+            "SNMP"
+        ],
+        "date": "2025-11-13",
+        "folder": "snmpwalk",
+        "platform": "knowledge"
+    },
+    {
+        "title": "RDP",
+        "description": "Remote Desktop Protocol（遠端桌面通訊協定）",
+        "tools": [
+            "knowledge",
+            "RDP",
+            "3389"
+        ],
+        "date": "2025-11-13",
+        "folder": "RDP",
+        "platform": "knowledge"
+    },
+    {
+        "title": "hydra",
+        "description": "「線上暴力 / 字典密碼嘗試」的工具",
+        "tools": [
+            "knowledge",
+            "hydra",
+            "RDP"
+        ],
+        "date": "2025-11-13",
+        "folder": "hydra",
+        "platform": "knowledge"
+    },
+    {
+        "title": "crackmapexec",
+        "description": "crackmapexec",
+        "tools": [
+            "knowledge",
+            "crackmapexec",
+            "windows",
+            "winrm"
+        ],
+        "date": "2025-11-13",
+        "folder": "crackmapexec",
+        "platform": "knowledge"
+    },
+    {
+        "title": "EOF",
+        "description": "EOF",
+        "tools": [
+            "knowledge",
+            "EOF"
+        ],
+        "date": "2025-11-13",
+        "folder": "EOF",
+        "platform": "knowledge"
+    },
+    {
+        "title": "gci",
+        "description": "gci",
+        "tools": [
+            "knowledge",
+            "gci",
+            "找檔案",
+            "powershell",
+            "Cmdlet"
+        ],
+        "date": "2025-11-13",
+        "folder": "gci",
+        "platform": "knowledge"
+    },
+    {
+        "title": "Invoke-WebRequest",
+        "description": "Invoke-WebRequest",
+        "tools": [
+            "knowledge",
+            "Invoke-WebRequest",
+            "下載檔案",
+            "powershell",
+            "Cmdlet",
+            "iwr"
+        ],
+        "date": "2025-11-13",
+        "folder": "Invoke-WebRequest",
+        "platform": "knowledge"
+    },
+    {
+        "title": ".net",
+        "description": ".net",
+        "tools": [
+            "knowledge",
+            ".net",
+            "下載檔案",
+            "powershell"
+        ],
+        "date": "2025-11-13",
+        "folder": "dotnet",
+        "platform": "knowledge"
+    },
+    {
+        "title": "jaws-enum",
+        "description": "jaws-enum",
+        "tools": [
+            "knowledge",
+            "jaws-enum"
+        ],
+        "date": "2025-11-14",
+        "folder": "jaws-enum",
+        "platform": "knowledge"
+    },
+    {
+        "title": "$Recycle.Bin",
+        "description": "$Recycle.Bin",
+        "tools": [
+            "knowledge",
+            "$Recycle.Bin",
+            "jaws-enum",
+            "impacket-secretsdump",
+            "Get-LocalUser",
+            "copy",
+            "download",
+            "上傳檔案"
+        ],
+        "date": "2025-11-14",
+        "folder": "RecycleBin",
+        "platform": "knowledge"
+    },
+    {
+        "title": "evil-winrm",
+        "description": "evil-winrm",
+        "tools": [
+            "knowledge",
+            "evil-winrm"
+        ],
+        "date": "2025-11-14",
+        "folder": "evil-winrm",
+        "platform": "knowledge"
+    },
+    {
+        "title": "impacket-secretsdump",
+        "description": "impacket-secretsdump",
+        "tools": [
+            "knowledge",
+            "impacket-secretsdump",
+            "sam",
+            "system"
+        ],
+        "date": "2025-11-14",
+        "folder": "impacket-secretsdump",
+        "platform": "knowledge"
+    },
+    {
+        "title": "dir -force",
+        "description": "解釋 dir vs dir -Force 的差異",
+        "tools": [
+            "knowledge",
+            "dir-force"
+        ],
+        "date": "2025-11-14",
+        "folder": "dir-force",
         "platform": "knowledge"
     }
 ]

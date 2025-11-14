@@ -1,8 +1,8 @@
 [
     {
-        "title": "Blueprint - Easy",
+        "title": "Blueprint",
         "platform": "thm",
-        "description": "Blueprint",
+        "description": "thm Blueprint easy",
         "tools": [
             "windows",
             "php",
@@ -18,10 +18,51 @@
             "osCommerce 2.3.4.1",
             "msfvenom",
             "powershell",
-            "sam"
+            "sam",
+            "nmap",
+            "searchsploit",
+            "python",
+            "thm"
         ],
         "date": "2025-11-11",
-        "folder": "Blueprint",
-        "type": ""
+        "folder": "Blueprint"
+    },
+    {
+        "title": "yearOfTheOwl",
+        "platform": "thm",
+        "description": "thm yearOfTheOwl hard",
+        "tools": [
+            "windows",
+            "nmap",
+            "feroxbuster",
+            "exiftool",
+            "strings",
+            "binwalk",
+            "steghide",
+            "enum4linux",
+            "onesixtyone",
+            "SNMP",
+            "msfconsle",
+            "auxiliary/scanner/snmp/snmp_enumusers",
+            "thm",
+            "RDP",
+            "winrm",
+            "crackmapexec",
+            "hydra",
+            "brute‑force",
+            "EOF",
+            "evil-winrm",
+            "Get-ChildItem",
+            "gci",
+            "Privilege Escalation",
+            "jaws-enum",
+            "$Recycle.Bin",
+            "Get-LocalUser",
+            "sam",
+            "system",
+            "impacket-secretsdump"
+        ],
+        "date": "2025-11-13",
+        "folder": "yearOfTheOwl"
     }
 ]

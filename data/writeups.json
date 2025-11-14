@@ -21,7 +21,8 @@
             "sam",
             "nmap",
             "searchsploit",
-            "python"
+            "python",
+            "thm"
         ],
         "date": "2025-11-11",
         "folder": "Blueprint"
@@ -34,7 +35,32 @@
             "windows",
             "nmap",
             "feroxbuster",
-            "exiftool"
+            "exiftool",
+            "strings",
+            "binwalk",
+            "steghide",
+            "enum4linux",
+            "onesixtyone",
+            "SNMP",
+            "msfconsle",
+            "auxiliary/scanner/snmp/snmp_enumusers",
+            "thm",
+            "RDP",
+            "winrm",
+            "crackmapexec",
+            "hydra",
+            "brute‑force",
+            "EOF",
+            "evil-winrm",
+            "Get-ChildItem",
+            "gci",
+            "Privilege Escalation",
+            "jaws-enum",
+            "$Recycle.Bin",
+            "Get-LocalUser",
+            "sam",
+            "system",
+            "impacket-secretsdump"
         ],
         "date": "2025-11-13",
         "folder": "yearOfTheOwl"

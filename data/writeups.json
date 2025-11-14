@@ -45,7 +45,7 @@
             "msfconsle",
             "auxiliary/scanner/snmp/snmp_enumusers",
             "thm",
-            "RDP",
+            "rdp",
             "winrm",
             "crackmapexec",
             "hydra",
@@ -64,5 +64,32 @@
         ],
         "date": "2025-11-13",
         "folder": "yearOfTheOwl"
+    },
+    {
+        "title": "hacksmartersecurity",
+        "platform": "thm",
+        "description": "thm hacksmartersecurity medium",
+        "tools": [
+            "windows",
+            "nmap",
+            "ftp",
+            "gobuster",
+            "dell",
+            "openmanage",
+            "OMSA",
+            "CVE-2020-5377",
+            "Dell EMC OpenManage Server Administrator",
+            "searchsploit",
+            "web.config",
+            "ssh",
+            "PrivescCheck",
+            "spoofer-scheduler",
+            "sc",
+            "curl下載檔案",
+            "Privilege Enumcation",
+            "Windows提權手動確認步驟"
+        ],
+        "date": "2025-11-14",
+        "folder": "hacksmartersecurity"
     }
 ]

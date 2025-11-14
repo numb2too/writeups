@@ -304,15 +304,15 @@
         "platform": "knowledge"
     },
     {
-        "title": "RDP",
+        "title": "rdp",
         "description": "Remote Desktop Protocol（遠端桌面通訊協定）",
         "tools": [
             "knowledge",
-            "RDP",
+            "rdp",
             "3389"
         ],
         "date": "2025-11-13",
-        "folder": "RDP",
+        "folder": "rdp",
         "platform": "knowledge"
     },
     {
@@ -321,7 +321,7 @@
         "tools": [
             "knowledge",
             "hydra",
-            "RDP"
+            "rdp"
         ],
         "date": "2025-11-13",
         "folder": "hydra",
@@ -329,12 +329,16 @@
     },
     {
         "title": "crackmapexec",
-        "description": "crackmapexec",
+        "description": "一個後滲透測試工具,專門用於 Windows 網路的列舉和利用。",
         "tools": [
             "knowledge",
             "crackmapexec",
             "windows",
-            "winrm"
+            "winrm",
+            "smb",
+            "rdp",
+            "ldap",
+            "ssh"
         ],
         "date": "2025-11-13",
         "folder": "crackmapexec",
@@ -398,7 +402,8 @@
         "description": "jaws-enum",
         "tools": [
             "knowledge",
-            "jaws-enum"
+            "jaws-enum",
+            "Privilege Escalation"
         ],
         "date": "2025-11-14",
         "folder": "jaws-enum",
@@ -426,7 +431,8 @@
         "description": "evil-winrm",
         "tools": [
             "knowledge",
-            "evil-winrm"
+            "evil-winrm",
+            "winrm"
         ],
         "date": "2025-11-14",
         "folder": "evil-winrm",
@@ -434,12 +440,16 @@
     },
     {
         "title": "impacket-secretsdump",
-        "description": "impacket-secretsdump",
+        "description": "用來 從 Windows 系統中匯出帳號密碼相關的機敏資料",
         "tools": [
             "knowledge",
             "impacket-secretsdump",
             "sam",
-            "system"
+            "system",
+            "Hash",
+            "NTLM",
+            "SECURITY",
+            "NTDS.dit"
         ],
         "date": "2025-11-14",
         "folder": "impacket-secretsdump",
@@ -454,6 +464,46 @@
         ],
         "date": "2025-11-14",
         "folder": "dir-force",
+        "platform": "knowledge"
+    },
+    {
+        "title": "python",
+        "description": "python",
+        "tools": [
+            "knowledge",
+            "python"
+        ],
+        "date": "2025-11-14",
+        "folder": "python",
+        "platform": "knowledge"
+    },
+    {
+        "title": "PrivescCheck",
+        "description": "PrivescCheck 是一個 Windows 平台上的 本地權限提升（Privilege Escalation）檢測工具",
+        "tools": [
+            "knowledge",
+            "PrivescCheck",
+            "Windows",
+            "Privilege Escalation"
+        ],
+        "date": "2025-11-14",
+        "folder": "PrivescCheck",
+        "platform": "knowledge"
+    },
+    {
+        "title": "CVE-2020-5377",
+        "description": "發生在 Dell EMC OpenManage Server Administrator (OMSA)（簡稱 OMSA）中的一組「目錄穿越／檔案讀取」弱點",
+        "tools": [
+            "knowledge",
+            "CVE-2020-5377",
+            "dell-openmanage-server-administrator",
+            "dell",
+            "openmanage",
+            "OMSA",
+            "CWE‑22"
+        ],
+        "date": "2025-11-14",
+        "folder": "CVE-2020-5377",
         "platform": "knowledge"
     }
 ]

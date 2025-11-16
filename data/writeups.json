@@ -1,5 +1,16 @@
 [
     {
+        "title": "git",
+        "description": "git",
+        "tools": [
+            "knowledge",
+            "git"
+        ],
+        "date": "2025-11-16 23:06:55",
+        "folder": "git",
+        "platform": "knowledge"
+    },
+    {
         "title": "hacksmartersecurity",
         "platform": "thm",
         "description": "thm hacksmartersecurity medium",
@@ -30,7 +41,7 @@
         "folder": "hacksmartersecurity"
     },
     {
-        "title": "CyberLens",
+        "title": "Cyberlens",
         "platform": "thm",
         "description": "thm CyberLens easy",
         "tools": [
@@ -38,7 +49,7 @@
             "nmap"
         ],
         "date": "2025-11-14 00:00:00",
-        "folder": "CyberLens"
+        "folder": "Cyberlens"
     },
     {
         "title": "jaws-enum",
@@ -166,7 +177,6 @@
             "SNMP",
             "msfconsle",
             "auxiliary/scanner/snmp/snmp_enumusers",
-            "thm",
             "rdp",
             "winrm",
             "crackmapexec",
@@ -514,8 +524,7 @@
             "sam",
             "nmap",
             "searchsploit",
-            "python",
-            "thm"
+            "python"
         ],
         "date": "2025-11-11 00:00:00",
         "folder": "Blueprint"

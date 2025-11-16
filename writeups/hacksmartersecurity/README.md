@@ -2,7 +2,7 @@
 
 來源: [tryhackme](https://tryhackme.com/room/hacksmartersecurity)  
 題目: Hack Smarter Security
-難度: 10.10.176.146  
+難度: medium  
 靶機: `10.10.176.146`
 
 ## Enum

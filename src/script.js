@@ -22,15 +22,13 @@ document.getElementById('modal').addEventListener('click', (e) => {
 // ========== 資料載入 ==========
 async function loadWriteupIndex() {
     try {
-        const [writeupRes, knowledgeRes] = await Promise.all([
-            fetch('data/writeups.json').catch(() => ({ ok: false })),
-            fetch('data/knowleges.json').catch(() => ({ ok: false }))
+        const [writeupRes] = await Promise.all([
+            fetch('data/writeups.json').catch(() => ({ ok: false }))
         ]);
 
         const writeupData = writeupRes.ok ? await writeupRes.json() : [];
-        const knowledgeData = knowledgeRes.ok ? await knowledgeRes.json() : [];
 
-        writeups = [...writeupData, ...knowledgeData];
+        writeups = [...writeupData];
 
         if (writeups.length === 0) {
             throw new Error('沒有成功載入任何資料');

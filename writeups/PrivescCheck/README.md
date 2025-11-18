@@ -1,6 +1,13 @@
 # PrivescCheck
 https://github.com/itm4n/PrivescCheck/releases/tag/2025.11.09-1
 
+## cmd
+
+執行
+```bash
+. .\PrivescCheck.ps1; Invoke-PrivescCheck
+```
+
 
 ## 說明
 `PrivescCheck` 是一個 Windows 平台上的 **本地權限提升（Privilege Escalation）檢測工具**，主要用途是幫助滲透測試人員或紅隊確認目標系統是否存在 **可以讓低權限使用者升級為高權限（例如 Administrator 或 SYSTEM）的方法**。

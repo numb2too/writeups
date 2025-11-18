@@ -33,7 +33,24 @@ smb: \> dir
                 7863807 blocks of size 4096. 4762008 blocks available
 ```
 
+### login smbclient 使用者密碼
+```bash
+┌──(kali㉿kali)-[~/tryhackme/attack]
+└─$ smbclient -L \\\\spookysec.local\\ -U svc-admin --password management2005
 
+        Sharename       Type      Comment
+        ---------       ----      -------
+        ADMIN$          Disk      Remote Admin
+        backup          Disk      
+        C$              Disk      Default share
+        IPC$            IPC       Remote IPC
+        NETLOGON        Disk      Logon server share 
+        SYSVOL          Disk      Logon server share 
+Reconnecting with SMB1 for workgroup listing.
+do_connect: Connection to spookysec.local failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+Unable to connect with SMB1 -- no workgroup available
+
+```
 
 ## 說明
 ### **在 smbclient 裡遞迴地下載整個目錄（含子目錄）且不逐一確認**，最後把所有符合通配符的檔案抓下來。

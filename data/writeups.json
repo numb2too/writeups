@@ -1,7 +1,144 @@
 [
   {
+    "title": "AS-REP",
+    "description": "AS-REP",
+    "tools": [
+      "knowledge",
+      "AS-REP",
+      "Kerberos"
+    ],
+    "date": "2025-11-18 16:00:32",
+    "folder": "AS-REP",
+    "platform": "knowledge"
+  },
+  {
+    "title": "impacket-GetNPUsers",
+    "description": "impacket-GetNPUsers",
+    "tools": [
+      "knowledge",
+      "impacket-GetNPUsers",
+      "AS-REP",
+      "Kerberos"
+    ],
+    "date": "2025-11-18 15:57:23",
+    "folder": "impacket-GetNPUsers",
+    "platform": "knowledge"
+  },
+  {
+    "title": "LDAPS",
+    "description": "加密的 LDAP",
+    "tools": [
+      "knowledge",
+      "LDAPS",
+      "636 port"
+    ],
+    "date": "2025-11-18 15:27:04",
+    "folder": "LDAPS",
+    "platform": "knowledge"
+  },
+  {
+    "title": "LDAP",
+    "description": "查詢和修改 AD 資料",
+    "tools": [
+      "knowledge",
+      "LDAP",
+      "389 port"
+    ],
+    "date": "2025-11-18 15:25:52",
+    "folder": "LDAP",
+    "platform": "knowledge"
+  },
+  {
+    "title": "DNS",
+    "description": "名稱解析 (AD 高度依賴 DNS)",
+    "tools": [
+      "knowledge",
+      "DNS",
+      "53 port"
+    ],
+    "date": "2025-11-18 15:25:09",
+    "folder": "DNS",
+    "platform": "knowledge"
+  },
+  {
+    "title": "SMB",
+    "description": "檔案共享",
+    "tools": [
+      "knowledge",
+      "445 port",
+      "smb"
+    ],
+    "date": "2025-11-18 15:24:23",
+    "folder": "SMB",
+    "platform": "knowledge"
+  },
+  {
+    "title": "Kerberos",
+    "description": "主要身份驗證協定",
+    "tools": [
+      "knowledge",
+      "Kerberos",
+      "88 port",
+      "AS-REP"
+    ],
+    "date": "2025-11-18 15:23:29",
+    "folder": "Kerberos",
+    "platform": "knowledge"
+  },
+  {
+    "title": "RPC",
+    "description": "遠端程序呼叫",
+    "tools": [
+      "knowledge",
+      "RPC",
+      "135 port"
+    ],
+    "date": "2025-11-18 15:23:05",
+    "folder": "RPC",
+    "platform": "knowledge"
+  },
+  {
+    "title": "kerbrute",
+    "description": "對 Kerberos 進行暴力破解和枚舉的工具,主要用於 Active Directory 環境的滲透測試",
+    "tools": [
+      "knowledge",
+      "kerbrute",
+      "Active Directory",
+      "AD",
+      "88 port",
+      "Kerberos"
+    ],
+    "date": "2025-11-18 15:05:49",
+    "folder": "kerbrute",
+    "platform": "knowledge"
+  },
+  {
+    "title": "attacktivedirectory",
+    "description": "thm attacktivedirectory medium",
+    "tools": [
+      "attacktivedirectory",
+      "windows"
+    ],
+    "date": "2025-11-18 14:41:58",
+    "folder": "attacktivedirectory",
+    "platform": "thm"
+  },
+  {
+    "title": "boreTcpTunnel",
+    "description": "免費的 tcp tunnel ",
+    "tools": [
+      "knowledge",
+      "boreTcpTunnel",
+      "public ip",
+      "tcp tunnel"
+    ],
+    "date": "2025-11-18 14:34:00",
+    "folder": "boreTcpTunnel",
+    "platform": "knowledge"
+  },
+  {
     "title": "checkCmd",
-    "description": "checkCmd",
+    "description": "確認靶機是否成功執行 cmd",
     "tools": [
       "knowledge",
       "checkCmd",
@@ -14,7 +151,7 @@
   },
   {
     "title": "msfvenomCmdBuilder",
-    "description": "msfvenomCmdBuilder",
+    "description": "快速生成 msfvenom cmd",
     "tools": [
       "knowledge",
       "msfvenomCmdBuilder",
@@ -28,7 +165,7 @@
   },
   {
     "title": "revshells",
-    "description": "Reverse Shell Generator",
+    "description": "快速生成 reverse shell cmd",
     "tools": [
       "knowledge",
       "revshells",
@@ -157,10 +294,10 @@
       "impacket-secretsdump",
       "sam",
       "system",
-      "Hash",
       "NTLM",
       "SECURITY",
-      "NTDS.dit"
+      "NTDS.dit",
+      "hash"
     ],
     "date": "2025-11-14 00:00:00",
     "folder": "impacket-secretsdump",
@@ -194,8 +331,8 @@
     "tools": [
       "knowledge",
       "PrivescCheck",
-      "Windows",
-      "Privilege Escalation"
+      "Privilege Escalation",
+      "windows"
     ],
     "date": "2025-11-14 00:00:00",
     "folder": "PrivescCheck",
@@ -417,7 +554,7 @@
     "tools": [
       "knowledge",
       "rdp",
-      "3389"
+      "3389 port"
     ],
     "date": "2025-11-13 00:00:00",
     "folder": "rdp",
@@ -511,7 +648,8 @@
     "tools": [
       "knowledge",
       "ssh",
-      "隧道"
+      "隧道",
+      "22 port"
     ],
     "date": "2025-11-12",
     "folder": "ssh",
@@ -592,7 +730,8 @@
     "tools": [
       "knowledge",
       "smbclient",
-      "windows"
+      "windows",
+      "445 port"
     ],
     "date": "2025-11-11 00:00:00",
     "folder": "smbclient",

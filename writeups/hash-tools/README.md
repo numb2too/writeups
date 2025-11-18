@@ -1,4 +1,8 @@
 
+
+- https://hashcat.net/wiki/doku.php?id=example_hashes
+可確認編碼
+
 - https://ntlm.pw  
 NT   LM   MD5   SHA1   SHA256
 
